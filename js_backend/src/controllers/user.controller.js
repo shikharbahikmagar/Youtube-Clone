@@ -134,7 +134,10 @@ const loginUser = asyncHandler( async(req, res) => {
 
     if(!isPasswordCorrect)
     {
-        throw new ApiError(401, "Invalid credentials")
+        return res.status(401)
+        .json(
+            new ApiResponse(401, "Invalid Password")
+        )
     }
 
     //generate token
