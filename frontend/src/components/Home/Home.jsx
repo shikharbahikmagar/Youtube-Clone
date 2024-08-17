@@ -1,7 +1,7 @@
 function Home()
 {
     return(
-        <div>
+        <div className="z-[-99]">
             <h1>Home</h1>
         </div>
     )

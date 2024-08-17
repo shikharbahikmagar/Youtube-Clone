@@ -14,7 +14,7 @@ function Header() {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <header className="shadow sticky z-50 top-0">
+        <header className="shadow sticky z-99 top-0">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
@@ -31,14 +31,14 @@ function Header() {
 
                     <li className=''>
                         <ul className='flex items-center'>
-                            <li className='flex w-auto grow'><input className='indent-6 rounded-tl-2xl rounded-bl-2xl border-2 border-slate-400 h-8 min-w-full' type="text" placeholder='Search'/></li>
+                            <li className='flex w-auto grow'><input className='indent-6 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl border-2 border-slate-400 h-[30px] text-sm text-slate-600 min-w-full' type="text" placeholder='Search'/></li>
                             <li className='border-2 p-[6px;] rounded-tr-2xl rounded-br-2xl border-slate-400'><Link><CiSearch /></Link></li>
                             <li className='border-2 p-1 hidden md:block rounded-full ml-6 border-slate-400'><Link><FaMicrophone /></Link></li>
                         </ul>
                     </li>
 
-                    <li className=' '>
-                        <ul className="flex justify-between items-center md:space-x-4 md:mr-16 md:gap-4">
+                    <li className=''>
+                        <ul className="md:flex justify-between items-center md:space-x-4 md:mr-16 md:gap-4">
                             <li className='text-2xl hidden md:block'>
                                 <Link><IoIosNotifications /></Link>
                             </li>
