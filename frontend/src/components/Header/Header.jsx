@@ -9,9 +9,19 @@ import { FaMicrophone } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { PiCameraPlusFill } from "react-icons/pi";
 import { FaEllipsisVertical } from "react-icons/fa6";
+import useMenuState from '@/contexts/navMenu';
 
 function Header() {
-    const [isOpen, setOpen] = useState(false);
+    const {menuState, openState, closeState} = useMenuState();
+
+   const onClickMenu = () => {
+
+        if(menuState){
+            closeState();
+        }else{
+            openState();
+        }
+    }
 
     return (
         <header className="shadow sticky z-99 top-0">
@@ -20,7 +30,7 @@ function Header() {
                     <li className=''>
                         <ul className='flex items-center'>
                             <li>
-                                <Link to="/" className="hidden md:block scale-50"><Hamburger toggled={isOpen} toggle={setOpen} /></Link>
+                                <Link to="/" className="hidden md:block scale-50"><Hamburger toggled={menuState} toggle={onClickMenu} /></Link>
                             </li>
                             <li>
                                 <Link to="/" className=""><img className='hidden md:block w-30 h-12' src={log} alt="" /></Link>
