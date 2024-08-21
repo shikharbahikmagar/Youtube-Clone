@@ -58,6 +58,9 @@ function Header() {
                             <li className='md:hidden block text-2xl items-right'>
                                 <Link><FaEllipsisVertical /></Link>
                             </li>
+                            <li>
+                                <a className='p-2 pl-4 pr-4 text-blue-500 rounded-xl border-2' href="">Sign in</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

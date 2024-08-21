@@ -1,9 +1,14 @@
 import { IoMdHome } from "react-icons/io";
 import { MdSubscriptions } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
-
+import { FaHistory } from "react-icons/fa";
+import { BiSolidLike } from "react-icons/bi";
 import useMenuState from "@/contexts/navMenu";
-
+import { BiSolidVideos } from "react-icons/bi";
+import { ImFire } from "react-icons/im";
+import { MdMusicNote } from "react-icons/md";
+import { SiYoutubegaming } from "react-icons/si";
+import { BiSolidTrophy } from "react-icons/bi";
 
 function Sidebar (){
     
@@ -14,7 +19,7 @@ function Sidebar (){
     if(menuState)
     return(
         <aside className="w-[240px] bg-gray-100 fixed text-slate-700 text:sm min-h-screen flex flex-col">
-        <nav className="flex-1 mt-4">
+        <nav className="flex-1 m-4">
             <ul>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
@@ -36,6 +41,80 @@ function Sidebar (){
                     </a>
                 </li>
             </ul>
+
+            <hr className="mt-4" />
+            <ul className="mt-4">
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                        <span className="ml-3 text-sm">You</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                        <SiYoutubeshorts className="text-lg"/>
+                        <span className="ml-3 text-sm">Your channel</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                    <FaHistory className="text-lg"/>
+                        <span className="ml-3 text-sm">History</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                    <BiSolidVideos className="text-lg"/>
+                        <span className="ml-3 text-sm">Your videos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                    <BiSolidLike className="text-lg"/>
+                        <span className="ml-3 text-sm">Liked videos</span>
+                    </a>
+                </li>
+            </ul>
+            <hr className="mt-4" />
+            <ul className="mt-4">
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                        <span className="ml-3 text-sm">Explore</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                        <ImFire className="text-lg"/>
+                        <span className="ml-3 text-sm">Trending</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                    <MdMusicNote className="text-lg"/>
+                        <span className="ml-3 text-sm">Music</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                    <SiYoutubegaming className="text-lg"/>
+                        <span className="ml-3 text-sm">Gaming</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
+                    <BiSolidTrophy className="text-lg"/>
+                        <span className="ml-3 text-sm">Sport</span>
+                    </a>
+                </li>
+            </ul>
+            <hr className="mt-4" />
+            <div className="mt-4 p-4 text-sm text-slate-500">
+                <p className="p-2"> About Press Copyright Contact us Creators Advertise Developers</p>
+                <p className="p-2">
+                Terms Privacy Policy & Safety How YouTube works Test new features</p>
+
+                <p className="p-2">© 2024 Google LLC</p>
+            </div>
+           
         </nav>
     </aside>
 
