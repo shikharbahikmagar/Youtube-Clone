@@ -13,7 +13,7 @@ function Sidebar (){
     
     if(menuState)
     return(
-        <aside className="w-40 bg-gray-100 text-slate-700 text:sm min-h-screen flex flex-col">
+        <aside className="w-[240px] bg-gray-100 fixed text-slate-700 text:sm min-h-screen flex flex-col">
         <nav className="flex-1 mt-4">
             <ul>
                 <li>
@@ -42,25 +42,25 @@ function Sidebar (){
     )
     else
     return (
-    <aside className="w-24 bg-gray-100 text-slate-700 text:sm min-h-screen flex flex-col">
+    <aside className="w-[64px] bg-gray-100 fixed text-slate-700 text:sm min-h-screen flex flex-col">
     <nav className="flex-1 items-center align-center mt-4">
         <ul>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300">
-                    <IoMdHome className="text-xl"/>
-                    <span className="mt-1 text-[12px]">Home</span>
+                    <IoMdHome className="text-lg"/>
+                    <span className="mt-1 text-[10px]">Home</span>
                 </a>
             </li>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300">
-                    <SiYoutubeshorts className="text-xl"/>
-                    <span className="mt-1 text-[12px]">Shorts</span>
+                    <SiYoutubeshorts className="text-lg"/>
+                    <span className="mt-1 text-[10px]">Shorts</span>
                 </a>
             </li>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300">
-                <MdSubscriptions className="text-xl"/>
-                    <span className="mt-1 text-[12px]">Subscriptions</span>
+                <MdSubscriptions className="text-lg"/>
+                    <span className="mt-1 text-[10px]">Subscriptions</span>
                 </a>
             </li>
         </ul>

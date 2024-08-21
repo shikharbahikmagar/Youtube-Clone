@@ -1,9 +1,10 @@
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import { Outlet } from "react-router-dom"
-import Sidebar from "./components/Sidebar/Sidebar"
+
 import { MenuStateProvider } from "./contexts/navMenu"
 import { useState } from "react"
+import Home from "./components/Sidebar/Sidebar"
 
 function App() {
   const [menuState, setMenuState] = useState(false);
@@ -19,7 +20,7 @@ function App() {
   return (
     <MenuStateProvider value={{menuState, openState, closeState} }>
       <Header />
-      <Sidebar />
+      <Home />
       <Outlet />
       <Footer />
     </MenuStateProvider>

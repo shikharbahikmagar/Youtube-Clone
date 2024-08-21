@@ -24,7 +24,7 @@ function Header() {
     }
 
     return (
-        <header className="shadow sticky z-99 top-0">
+        <header className="shadow sticky z-50 top-0">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
@@ -41,9 +41,9 @@ function Header() {
 
                     <li className=''>
                         <ul className='flex items-center'>
-                            <li className='flex w-auto grow'><input className='indent-6 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl border-2 border-slate-400 h-[30px] text-sm text-slate-600 min-w-full' type="text" placeholder='Search'/></li>
-                            <li className='border-2 p-[6px;] rounded-tr-2xl rounded-br-2xl border-slate-400'><Link><CiSearch /></Link></li>
-                            <li className='border-2 p-1 hidden md:block rounded-full ml-6 border-slate-400'><Link><FaMicrophone /></Link></li>
+                            <li className=''><input className='max-w-96 w-96 indent-6 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl border-1 border-slate-400 h-[30px] text-sm text-slate-600' type="text" placeholder='Search'/></li>
+                            <li className='border  p-[6.1px;] rounded-tr-2xl rounded-br-2xl border-slate-400 pl-4 pr-4'><Link><CiSearch /></Link></li>
+                            <li className='border bg-slate-200 p-1 hidden md:block rounded-full ml-6 border-slate-400'><Link><FaMicrophone /></Link></li>
                         </ul>
                     </li>
 
@@ -63,6 +63,7 @@ function Header() {
                 </ul>
             </nav>
         </header>
+        
     );
 }
 
