@@ -126,7 +126,10 @@ const loginUser = asyncHandler( async(req, res) => {
     //handle user not found
     if(!user)
     {
-        throw new ApiError(404, "user does not exist")
+        return res.status(401)
+        .json(
+            new ApiResponse(401, "Invalid Username or Email")
+        )
     }
 
     //check password
