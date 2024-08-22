@@ -11,9 +11,20 @@ import { IoIosNotifications } from "react-icons/io";
 import { PiCameraPlusFill } from "react-icons/pi";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import useMenuState from '@/contexts/navMenu';
+import { useSelector } from 'react-redux';
 
 function Header() {
     const {menuState, openState, closeState} = useMenuState();
+    const userStatus = useSelector((state) => state.auth.status);
+    const user = useSelector((state) => state.auth.userData);
+    //console.log(user);
+    var firstChar = null;
+   if(userStatus){
+    firstChar = Array.from(user.fullName)[0];
+    //console.log(firstChar);
+}
+    
+    
 
    const onClickMenu = () => {
 
@@ -59,7 +70,7 @@ function Header() {
                                 <Link><FaEllipsisVertical /></Link>
                             </li>
                             <li>
-                                <Link to="/login"><button className='md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4 text-[10px] md:text-lg text-blue-400 rounded-md md:rounded-xl border-1 bg-slate-800'>Sign in</button></Link>
+                                <Link to="/login"><button className={`md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4 text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-xl text-blue-400' } border-1 bg-slate-800`}>{ userStatus? firstChar : "Sign In" }</button></Link>
                                 
                             </li>
                         </ul>
