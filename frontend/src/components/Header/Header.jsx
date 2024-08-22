@@ -69,10 +69,11 @@ function Header() {
                             <li className='md:hidden block text-[12px] md:text-2xl items-right'>
                                 <Link><FaEllipsisVertical /></Link>
                             </li>
+                            
                             <li>
-                                <Link to="/login"><button className={`md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4 text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-xl text-blue-400' } border-1 bg-slate-800`}>{ userStatus? firstChar : "Sign In" }</button></Link>
-                                
+                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-xl text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "Sign In" }</button></Link> 
                             </li>
+                    
                         </ul>
                     </li>
                 </ul>
