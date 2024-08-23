@@ -41,11 +41,11 @@ function Header() {
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
                         <ul className='flex items-center'>
-                            <li className=''>
-                                <Link to="/" className="size-4"><Hamburger className="" toggled={menuState} toggle={onClickMenu} /></Link>
+                            <li className='ml-2'>
+                                <Link to="/" className=""><Hamburger size={20} toggled={menuState} toggle={onClickMenu} /></Link>
                             </li>
                             <li>
-                                <Link to="/" className=""><img className='w-15 h-3 md:w-30 ml-4 md:h-6' src={log} alt="" /></Link>
+                                <Link to="/" className=""><img className='w-15 h-2 md:w-31 ml-5 md:h-5' src={log} alt="" /></Link>
                             </li>
                         </ul>
                     </li>

@@ -4,7 +4,7 @@ import App from './App.jsx'
 import SimpleLayout from './SimpleLayout';
 import './index.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import Home from './components/Home/Home'
+import Feed from './components/Home/Feed.jsx'
 import Login from './pages/Login.jsx'
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -25,11 +25,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />
+        element: <Feed />
       },
       {
         path: "about",
-        element: <Home />
+        element: <Feed />
       }
     ]
   },

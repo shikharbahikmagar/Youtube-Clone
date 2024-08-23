@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 
 import { MenuStateProvider } from "./contexts/navMenu"
 import { useState } from "react"
-import Home from "./components/Sidebar/Sidebar"
+import Feed from "./components/Sidebar/Sidebar"
 import Suggestion from "./components/suggestions/Suggestion.jsx"
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
     <MenuStateProvider value={{menuState, openState, closeState} }>
       <Header />
       <Suggestion />
-      <Home />
+      <Feed />
       <Outlet />
       <Footer />
     </MenuStateProvider>

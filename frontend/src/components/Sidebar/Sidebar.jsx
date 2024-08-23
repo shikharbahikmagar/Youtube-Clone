@@ -19,8 +19,8 @@ function Sidebar (){
     
     if(menuState)
     return(
-        <aside className="md:w-[240px] w-[120px] bg-gray-100 fixed text-slate-100 bg-neutral-950 text-[8px] md:text:sm min-h-screen flex flex-col">
-        <nav className="flex-1 m-2 md:m-4">
+        <aside className="md:w-[240px] w-[120px] bg-gray-100 fixed text-slate-100 bg-neutral-950 text-[8px] md:text:sm min-h-screen flex flex-col transition-w duration-200 ease-out">
+        <nav className="flex-1 m-2 md:m-4 divide-y divide-gray-600">
             <ul>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
@@ -43,7 +43,6 @@ function Sidebar (){
                 </li>
             </ul>
 
-            <hr className="mt-4" />
             <ul className="mt-4">
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
@@ -75,7 +74,7 @@ function Sidebar (){
                     </a>
                 </li>
             </ul>
-            <hr className="mt-4" />
+
             <ul className="mt-4">
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300">
@@ -107,7 +106,7 @@ function Sidebar (){
                     </a>
                 </li>
             </ul>
-            <hr className="mt-4" />
+
             <div className="mt-4 p-4 text-sm text-slate-500">
                 <p className="p-2"> About Press Copyright Contact us Creators Advertise Developers</p>
                 <p className="p-2">

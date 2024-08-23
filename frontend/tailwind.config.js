@@ -33,7 +33,11 @@ module.exports = {
       },
       flex: {
         '2': '2 2 0%'
-      }
+      },
+      transitionProperty: {
+        'ml': 'margin-left',
+        'w': 'width',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
