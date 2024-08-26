@@ -7,10 +7,19 @@ import { upload } from "../middlewares/multer.middleware.js";
 const router = Router();
 
 router.route("/upload-video").post(
+    upload.fields([
+        {
+            name: "videoFile",
+            maxCount: 1,
+        },
+        {
+            name: "thumbnail",
+            maxCount: 1,
+        }
+    ]),
     verifyJWT,
-    upload.single("video"),
-    uploadVideo
+    uploadVideo,
 )
 
 
-export default router
+export default router;
