@@ -43,6 +43,19 @@ cloudinary.config({
       }
  }
 
+ const deleteVideoFromCloudinary = async(videoPubId) => {
+  try {
+      const response = await cloudinary.uploader.destroy(videoPubId, {
+        resource_type: 'video'
+      });
+      //console.log('Delete result:', result);
+      return response;
+    } catch (error) {
+      console.error('Error deleting old video:', error);
+      return null;
+    }
+}
 
 
- export {uploadOnCloudinary, deleteFromCloudinary}
+
+ export {uploadOnCloudinary, deleteFromCloudinary, deleteVideoFromCloudinary}
