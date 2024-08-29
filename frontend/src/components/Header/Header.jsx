@@ -52,9 +52,9 @@ function Header() {
 
                     <li className=''>
                         <ul className='flex items-center'>
-                            <li className=''><input className='lg:max-w-96 lg:w-96 md:indent-6 indent-3 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl border-1 border-slate-400 h-[30px] text-[12px] md:text-sm text-slate-600' type="text" placeholder='Search'/></li>
-                            <li className='border  p-[6.1px;] rounded-tr-2xl rounded-br-2xl border-slate-400 pl-4 pr-4'><Link><CiSearch /></Link></li>
-                            <li className='border bg-slate-800 p-1 hidden md:block rounded-full ml-6 border-slate-400'><Link><FaMicrophone /></Link></li>
+                            <li className=''><input className='lg:max-w-96 lg:w-96 md:indent-6 indent-3 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl border-1 border-slate-700 h-[31px] text-[12px] md:text-sm text-slate-200 bg-slate-950 ' type="text" placeholder='Search'/></li>
+                            <li className='border  p-[6.1px;] rounded-tr-2xl rounded-br-2xl border-slate-700 pl-4 pr-4'><Link><CiSearch /></Link></li>
+                            <li className='border bg-slate-700 p-1 hidden md:block rounded-full ml-6 border-slate-800'><Link><FaMicrophone /></Link></li>
                         </ul>
                     </li>
 

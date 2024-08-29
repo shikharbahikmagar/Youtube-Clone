@@ -12,14 +12,14 @@ function Login() {
     const [error, setError] = useState("")
     const dispatch = useDispatch();
   const api = axios.create({
-    baseURL: 'http://127.0.0.1:8001/api/v1/', // Base URL
+    baseURL: 'http://127.0.0.1:8000/api/v1/', // Base URL
     headers: {
       'Content-Type': 'application/json',
     }
   });
   let userData = {};
   const login = async(data) => {
-    //console.log(data);
+    console.log(data);
     try {
       const response =  await api.post("users/login", data)
       console.log(response);
