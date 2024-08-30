@@ -45,8 +45,10 @@ cloudinary.config({
 
  const deleteVideoFromCloudinary = async(videoPubId) => {
   try {
+    //console.log(videoPubId);
+    
       const response = await cloudinary.uploader.destroy(videoPubId, {
-        resource_type: 'video'
+        resource_type: "video"
       });
       //console.log('Delete result:', result);
       return response;

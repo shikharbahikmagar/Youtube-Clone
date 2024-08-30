@@ -88,24 +88,23 @@ const deleteVideo = asyncHandler(async(req, res) => {
     try {
         //user from middleware
         const user = req.user
-        console.log(user._id.toString());
-        
-    
+
         if(!user){
             return new ApiError(401, "please login to remove video")
         }
+        console.log(user._id.toString());
 
         const userId = req.user?._id.toString()
         
         //video id from params
         const videoId = req.params.id
-        //console.log(videoId);
+        console.log(videoId);
         
     
         const video = await Video.findById(videoId)
         console.log(video);
-        const ownerId = video?._owner.toString()
-        console.log(ownerId);
+        const ownerId = video?.owner.toString()
+        console.log(ownerId.toString());
         
         
         //check if user is authorized to remove video
@@ -117,17 +116,7 @@ const deleteVideo = asyncHandler(async(req, res) => {
         if(!videoId){
             return new ApiError(400, "no video found")
         }
-    
-        //remove video from db
-        const response = await Video.findByIdAndDelete(videoId)
-    
-        if(!response){
-            return new ApiError(404, "video not found")
-        }
-    
-        //delete video from cloudinary
-    
-        //extract public id from video url
+
         const oldVideoPath = video?.videoFile
     
         const extractPublicIdFromUrl = (url) => {
@@ -147,6 +136,18 @@ const deleteVideo = asyncHandler(async(req, res) => {
             
             return new ApiError(500, "error removing video")
         }
+    
+        //remove video from db
+        const response = await Video.findByIdAndDelete(videoId)
+    
+        if(!response){
+            return new ApiError(404, "video not found")
+        }
+    
+        //delete video from cloudinary
+    
+        //extract public id from video url
+        
         
         return res.status(200).json(new ApiResponse(200, "video removed successfully"))
     
@@ -155,10 +156,56 @@ const deleteVideo = asyncHandler(async(req, res) => {
         
     }
 
-    })
+})
 
+//update video details
+const updateVideoDetails = asyncHandler( async(req, res) => {
+
+    const {title, description} = req.body
+    const videoId = req.params.id
+
+    const user = req.user;
+    const userId = user?._id.toString()
+    //console.log(userId);
+    
+
+    const getVideoDetails = await Video.findById(videoId)
+    //console.log(getVideoDetails);
+    
+    const videoOwnerId = getVideoDetails?.owner.toString()
+    //console.log(videoOwnerId);
+    
+
+    if( userId !== videoOwnerId )
+    {
+        return new ApiError(401, "unauthorized user");
+    }
+
+    if(!title && !description)
+    {
+        return new ApiError(400, "details can not be empty")
+    }
+
+    const video = await Video.findByIdAndUpdate( 
+        videoId, 
+        {
+            $set: {
+                title,
+                description,
+            }
+    });
+
+    console.log(video);
+    
+
+    return res.status(200)
+    .json(new ApiResponse(200, "Video details updated successfully", video))
+
+
+})
 export {
     uploadVideo,
     getVideo,
-    deleteVideo
+    deleteVideo,
+    updateVideoDetails
 }
