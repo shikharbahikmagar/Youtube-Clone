@@ -36,7 +36,7 @@ function Header() {
     }
 
     return (
-    <header className="shadow sticky z-50 top-0 bg-neutral-950 flex-col text-white">
+    <header className="shadow sticky z-50 top-0 bg-black flex-col text-white">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
@@ -64,7 +64,7 @@ function Header() {
                                 <Link><IoIosNotifications /></Link>
                             </li>
                             <li className='text-2xl hidden md:block'>
-                                <NavLink to="/about"><PiCameraPlusFill /></NavLink>
+                                <NavLink to="/upload-video"><PiCameraPlusFill /></NavLink>
                             </li>
                             <li className='md:hidden block text-[12px] md:text-2xl items-right'>
                                 <Link><FaEllipsisVertical /></Link>

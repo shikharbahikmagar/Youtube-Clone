@@ -5,7 +5,7 @@ function Suggestion() {
     const {menuState} = useMenuState();
 
    return (
-    <div className={`${menuState? 'ml-[252px]': 'ml-[65px]'} text-[10px] md:text-[15px] bg-neutral-950 p-5 z-50 text-white fixed w-full `}>
+    <div className={`${menuState? 'ml-[252px]': 'ml-[65px]'} text-[10px] md:text-[15px] bg-black p-5 z-50 text-white fixed w-full `}>
     <ul className="flex gap-2 m-2">
         <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">All</li>
         <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Related</li>

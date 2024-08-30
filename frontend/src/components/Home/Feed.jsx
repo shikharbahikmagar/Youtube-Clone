@@ -8,7 +8,7 @@ function Feed()
 
     return(
         <>
-    <div className={` ${menuState? 'ml-[120px] md:ml-[250px]': 'ml-[50px] md:ml-[70px]'} text-white bg-neutral-950 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-2 text-center mt-24 transition-ml duration-200 ease-in-out`}>
+    <div className={` ${menuState? 'ml-[120px] md:ml-[250px]': 'ml-[50px] md:ml-[70px]'} text-white bg-black grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-2 text-center mt-24 transition-ml duration-200 ease-in-out`}>
       <div className="md:rounded-xl rounded:sm flex-col p-4 shadow">
         <div className="w-full">
             <img className="w-full md:h-56 rounded-lg md:rounded-2xl" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfYJmWQ51HduTdVJqtwWxGUEY1NOWotNViPg&s" alt="" />
