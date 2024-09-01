@@ -41,7 +41,7 @@ function Header() {
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
                         <ul className='flex items-center'>
-                            <li className='ml-2'>
+                            <li className='ml-4'>
                                 <Link to="/" className=""><Hamburger size={20} toggled={menuState} toggle={onClickMenu} /></Link>
                             </li>
                             <li>

@@ -3,7 +3,8 @@ import {
             uploadVideo, 
             getVideo, 
             deleteVideo, 
-            updateVideoDetails
+            updateVideoDetails,
+            watchVideo
 
         } from "../controllers/video.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -27,9 +28,12 @@ import { upload } from "../middlewares/multer.middleware.js";
         uploadVideo,
     )
 
+    //get videos
+    router.route("/get-videos").get(getVideo)
+
     //get video by id
     router.route("/watch/:id").get(
-        getVideo
+        watchVideo
     )
 
     //delete video by id

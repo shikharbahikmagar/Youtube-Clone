@@ -66,7 +66,7 @@ const uploadVideo = asyncHandler ( async(req, res) => {
 })
 
 //get video by id
-const getVideo = asyncHandler(async(req, res) => {
+const watchVideo = asyncHandler(async(req, res) => {
         
     const videoId = req.params.id
 
@@ -203,9 +203,37 @@ const updateVideoDetails = asyncHandler( async(req, res) => {
 
 
 })
+
+const getVideo = asyncHandler( async(req, res) => {
+
+    try {
+        
+        const videos = await Video.aggregate([
+            {
+              $lookup: {
+                from: 'users',
+                localField: 'owner',
+                foreignField: '_id',
+                as: 'ownerDetails'
+              }
+            },
+        ]);
+
+        //console.log(videos);
+
+        return res.status(200)
+        .json(new ApiResponse(200, "videos fetched successfully", {videos: videos}))
+        
+
+    } catch (error) {
+        return new ApiError(500, "error fetching videos")
+    }
+
+})
 export {
     uploadVideo,
     getVideo,
+    watchVideo,
     deleteVideo,
     updateVideoDetails
 }
