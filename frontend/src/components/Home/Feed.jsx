@@ -16,7 +16,7 @@ function Feed()
         
           const videos = await axios.get("http://127.0.0.1:8000/api/v1/videos/get-videos");
 
-          console.log(videos);
+          //console.log(videos);
           
           setFeed(videos.data.data.videos)
         }
@@ -31,7 +31,7 @@ function Feed()
       fetchData();
     }, [])
 
-    console.log(feed);
+   // console.log(feed);
     
 
 
@@ -42,7 +42,7 @@ function Feed()
 
       <div className="md:rounded-xl rounded:sm flex-col p-4 shadow" key={video._id}>
       <div className="w-full">
-          <Link to={video.videoFile}><img className="w-full md:h-56 rounded-lg md:rounded-2xl" src={video.thumbnail} alt="" /></Link>
+          <Link to={`/watch/${video._id}`}><img className="w-full md:h-56 rounded-lg md:rounded-2xl" src={video.thumbnail} alt="" /></Link>
       </div>
       <div className="mt-2 text-left">
           <div className="flex">

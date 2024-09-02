@@ -8,6 +8,7 @@ import Feed from './components/Home/Feed.jsx'
 import Login from './pages/Login.jsx'
 import { Provider } from 'react-redux';
 import store from './store/store';
+import Watch from './pages/Watch.jsx';
 
 const router = createBrowserRouter([
   // createRoutesFromElements(
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <Feed />
+      },
+      {
+        path: "watch/:id",
+        element: <Watch />
       }
     ]
   },

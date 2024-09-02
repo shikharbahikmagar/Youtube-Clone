@@ -3,6 +3,7 @@ import {Video} from "../models/video.model.js"
 import { ApiError } from "../utils/ApiError.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
+import mongoose, { mongo, Mongoose } from "mongoose"
 
 const uploadVideo = asyncHandler ( async(req, res) => {
 
@@ -70,7 +71,33 @@ const watchVideo = asyncHandler(async(req, res) => {
         
     const videoId = req.params.id
 
-    const video = await Video.findById(videoId)
+    const video = await Video.aggregate([
+
+        {
+            $match: {
+                _id: new mongoose.Types.ObjectId(videoId) 
+            }
+        },
+        {
+            $lookup: {
+                from: "users",
+                localField: "owner",
+                foreignField: "_id",
+                as: "ownerDetails",
+                pipeline: [
+                   {
+                        $project: {
+
+                            fullName: 1,
+                            username: 1,
+                            avatar: 1
+
+                        }
+                   }
+                ]
+            }
+        }
+    ])
 
     if(!video)
     {
