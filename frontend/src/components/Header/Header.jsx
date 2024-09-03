@@ -42,7 +42,7 @@ function Header() {
                     <li className=''>
                         <ul className='flex items-center'>
                             <li className='ml-4'>
-                                <Link to="/" className=""><Hamburger size={20} toggled={menuState} toggle={onClickMenu} /></Link>
+                               <Hamburger size={20} toggled={menuState} toggle={onClickMenu} />
                             </li>
                             <li>
                                 <Link to="/" className=""><img className='w-15 h-2 md:w-31 ml-5 md:h-5' src={log} alt="" /></Link>

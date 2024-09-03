@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Iframe from 'react-iframe'
 import { useParams } from "react-router-dom";
-
+import { AiOutlineLike } from "react-icons/ai";
+import { AiOutlineDislike } from "react-icons/ai";
 
 function Watch() {
 
@@ -36,23 +37,55 @@ function Watch() {
     {
     return (
         
-        <div className="grid grid-cols-1 ml-[100px] flex">
-            <div className="grid-8">
-            <div className='md:block rounded-3xl overflow-hidden'>
-                <Iframe url={videoDetails.video[0].videoFile}
-                    autoplay="true"
-                    width="800px"
-                    height="460px"
-                    id=""
-                    className=""
-                    display="block"
-                    position="relative" />
+        <div className="grid grid-cols-12 ml-[140px]">
+            <div className="col-span-9">
+                <div className='md:block rounded-lg overflow-block'>
+                    <Iframe url={videoDetails.video[0].videoFile}
+                        width="1280px"
+                        className="rounded-lg"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        height="760px"
+                        id=""
+                        display="block"
+                        position="relative" />
+                </div>
+                <div>
+                    <h1 className="text-white">{videoDetails.video[0].title}</h1>
+                </div>
+                
+                <div className="flex gap-16 inline-block align-middle text-center bg-green-300">
+                    {/* left part */}
+                    <div className="flex gap-4 text-left">
+                        <div className="flex gap-4">
+                            <div className="mt-4">
+                                    <img className="rounded-full w-14 h-14" src={videoDetails.video[0].ownerDetails[0].avatar} alt="" />
+                                </div>
+                                <div className="flex flex-col">
+                                    <p className="text-white">{videoDetails.video[0].ownerDetails[0].fullName}</p>
+                                    <p className="text-white text-xs">4.5k subscribers</p>
+                                </div>
+                                <div>
+                                    <button className="p-1 pl-4 pr-4 bg-slate-200 rounded-2xl">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+            
+                        {/* right part */}
+                        <div className="flex gap-8">
+                            <div className="flex text-white text-2xl">
+                                <AiOutlineLike />
+                                <p className="">1.7k</p>|
+                                <AiOutlineDislike />
+                            </div>
+                            <div>
+                            <button className="p-1 pl-4 pr-4 bg-slate-600 text-white rounded-2xl">Share</button>
+                            </div>
+                        </div>
+                    </div>
             </div>
-            <div>
-               <h1 className="text-white"> Comments</h1>
-            </div>
-            </div>
-            <div className="grid-4">
+
+            <div className="col-span-3 mt-[100px]">
                     <h1 className="text-white">recommendations</h1>
             </div>
 
