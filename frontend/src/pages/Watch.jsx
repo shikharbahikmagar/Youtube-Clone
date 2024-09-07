@@ -54,11 +54,11 @@ function Watch() {
                     <h1 className="text-white">{videoDetails.video[0].title}</h1>
                 </div>
                 
-                <div className="flex gap-16 inline-block align-middle text-center bg-green-300">
+                <div className="flex gap-16 inline-block mt-8">
                     {/* left part */}
                     <div className="flex gap-4 text-left">
-                        <div className="flex gap-4">
-                            <div className="mt-4">
+                        <div className="flex gap-4 items-center justify-center">
+                                <div className="">
                                     <img className="rounded-full w-14 h-14" src={videoDetails.video[0].ownerDetails[0].avatar} alt="" />
                                 </div>
                                 <div className="flex flex-col">
@@ -72,14 +72,19 @@ function Watch() {
                         </div>
             
                         {/* right part */}
-                        <div className="flex gap-8">
-                            <div className="flex text-white text-2xl">
-                                <AiOutlineLike />
-                                <p className="">1.7k</p>|
+                        <div className="flex gap-4 ml-[45%] justify-center items-center ">
+                            <div className="flex text-white gap-4 justify-center items-center bg-neutral-800 rounded-2xl p-1 pl-4 pr-4">
+                                <div className="flex gap-2 text-[20px] justify-center items-center ">
+                                    <AiOutlineLike className="divide-x"/>
+                                    <p className="text-[17px]">1.7k</p>
+                                </div>
                                 <AiOutlineDislike />
                             </div>
                             <div>
-                            <button className="p-1 pl-4 pr-4 bg-slate-600 text-white rounded-2xl">Share</button>
+                            <button className="p-1 pl-4 pr-4 text-[20px] bg-neutral-800 text-white rounded-2xl">Share</button>
+                            </div>
+                            <div>
+                            <button className="p-1 pl-4 pr-4 text-[20px] bg-neutral-800 text-white rounded-2xl">save</button>
                             </div>
                         </div>
                     </div>
