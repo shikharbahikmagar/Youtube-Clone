@@ -4,11 +4,13 @@ import Iframe from 'react-iframe'
 import { useParams } from "react-router-dom";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
+import useMenuState from "@/contexts/navMenu";
 
 function Watch() {
 
     const {id} = useParams();
     //console.log(id);
+    const {menuState} = useMenuState();
 
     const [videoDetails, setVideoDetails] = useState();
     
@@ -37,7 +39,7 @@ function Watch() {
     {
     return (
         
-        <div className="grid grid-cols-12 ml-[140px]">
+        <div className={`grid grid-cols-12 ml-[140px] `}>
             <div className="col-span-9">
                 <div className='md:block rounded-lg overflow-block'>
                     <Iframe url={videoDetails.video[0].videoFile}

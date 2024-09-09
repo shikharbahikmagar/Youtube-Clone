@@ -19,7 +19,7 @@ function Sidebar (){
     
     if(menuState)
     return(
-        <aside className="md:w-[240px] w-[120px] fixed text-slate-100 bg-black text-[8px] md:text:sm min-h-screen flex flex-col transition-w duration-200 ease-out">
+        <aside className="md:w-[240px] w-[120px] fixed text-slate-100 bg-black text-[8px] md:text:sm min-h-screen flex flex-col transition-w duration-75 ease-in-out z-50">
         <nav className="flex-1 m-2 md:m-4 divide-y divide-gray-600">
             <ul>
                 <li>

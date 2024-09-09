@@ -36,6 +36,7 @@ function Header() {
     }
 
     return (
+        <>
     <header className="shadow sticky z-50 top-0 bg-black flex-col text-white">
             <nav>
                 <ul className="flex justify-between items-center align-center">
@@ -80,6 +81,7 @@ function Header() {
             </nav>
     </header>
         
+        </>
     );
 }
 
