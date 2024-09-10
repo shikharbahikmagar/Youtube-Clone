@@ -19,7 +19,7 @@ function Watch() {
         const getVideo = async() =>{
 
             try {
-                    const video = await axios.get(`http://127.0.0.1:8000/api/v1/videos/watch/${id}`)
+                    const video = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/watch/${id}`)
                     setVideoDetails(video.data.data);
                     console.log(video);
                     

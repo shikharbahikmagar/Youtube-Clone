@@ -11,17 +11,17 @@ function Login() {
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState("")
     const dispatch = useDispatch();
-  const api = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/v1/', // Base URL
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  });
+//   const api = axios.create({
+//     baseURL: '${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/', // Base URL
+//     headers: {
+//       'Content-Type': 'application/json',
+//     }
+//   });
   let userData = {};
   const login = async(data) => {
     console.log(data);
     try {
-      const response =  await api.post("users/login", data)
+      const response =  await api.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/users/login"`, data)
       console.log(response);
       if(response)
       {

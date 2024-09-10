@@ -15,7 +15,7 @@ function Feed()
       const fetchData = async () => {
       try {
         
-          const videos = await axios.get("http://127.0.0.1:8000/api/v1/videos/get-videos");
+          const videos = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/get-videos`);
 
           //console.log(videos);
           
