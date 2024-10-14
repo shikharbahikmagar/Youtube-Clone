@@ -73,11 +73,14 @@ function Watch() {
     return (
         
         <div className={`grid grid-cols-12 md:ml-[140px] `}>
+
+            {/* video player */}
             <div className="md:col-span-9 col-span-12">
                 <div className='md:block rounded-lg overflow-block'>
                     <Iframe url={videoDetails.video[0].videoFile}
-                        width="1280px"
-                        className="w-screen md:height-[760px] rounded-2xl flex-auto"
+                        width="95%" 
+                        height="720px"
+                        className=" md:height-[760px] rounded-2xl flex-auto"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen
                         id=""
@@ -184,6 +187,7 @@ function Watch() {
                     </ul>
                 </div>
             </div>
+            {/* video player end */}
 
             {/* recommended videos */}
             <div className="md:col-span-3 md:block hidden mt-[50px] text-white">
@@ -203,6 +207,7 @@ function Watch() {
                     </div>
                   ))}
             </div>
+            {/* recommended videos end */}
 
         </div>
     ) } else
