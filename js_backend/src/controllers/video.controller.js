@@ -12,6 +12,8 @@ const uploadVideo = asyncHandler ( async(req, res) => {
     //console.log(user);
     if(!user){
         return new ApiError(401, "user not found!")
+
+        
     }
 
     if(!title || !description){
