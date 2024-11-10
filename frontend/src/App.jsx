@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom"
 
 import { MenuStateProvider } from "./contexts/navMenu"
 import { useState } from "react"
-import Feed from "./components/Sidebar/Sidebar"
+
 
 
 function App() {
@@ -21,7 +21,6 @@ function App() {
   return (
     <MenuStateProvider value={{menuState, openState, closeState} }>
       <Header />
-      <Feed />
       <Outlet />
       <Footer />
     </MenuStateProvider>

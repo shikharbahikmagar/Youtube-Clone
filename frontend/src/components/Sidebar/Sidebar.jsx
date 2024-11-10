@@ -24,20 +24,20 @@ function Sidebar (){
             <ul>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                        <IoMdHome className="text-[10px] md:text-lg"/>
+                        <IoMdHome className="text-[10px] md:text-sm"/>
 
                         <span className="ml-3 md:text-md text-sm">Home</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                        <SiYoutubeshorts className="text-[10px] md:text-lg"/>
+                        <SiYoutubeshorts className="text-[10px] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Shorts</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <MdSubscriptions className="text-[10px] md:text-lg"/>
+                    <MdSubscriptions className="text-[10px] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Subscriptions</span>
                     </a>
                 </li>
@@ -51,25 +51,25 @@ function Sidebar (){
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                        <SiYoutubeshorts className="text-[10px] md:text-lg"/>
+                        <SiYoutubeshorts className="text-[10px] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Your channel</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <FaHistory className="text-[10xp] md:text-lg"/>
+                    <FaHistory className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">History</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <BiSolidVideos className="text-[10xp] md:text-lg"/>
+                    <BiSolidVideos className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Your videos</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <BiSolidLike className="text-[10xp] md:text-lg"/>
+                    <BiSolidLike className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Liked videos</span>
                     </a>
                 </li>
@@ -83,25 +83,25 @@ function Sidebar (){
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                        <ImFire className="text-[10xp] md:text-lg"/>
+                        <ImFire className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Trending</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <MdMusicNote className="text-[10xp] md:text-lg"/>
+                    <MdMusicNote className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Music</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <SiYoutubegaming className="text-[10xp] md:text-lg"/>
+                    <SiYoutubegaming className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Gaming</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <BiSolidTrophy className="text-[10xp] md:text-lg"/>
+                    <BiSolidTrophy className="text-[10xp] md:text-sm"/>
                         <span className="ml-3 md:text-md text-sm">Sport</span>
                     </a>
                 </li>
@@ -121,36 +121,36 @@ function Sidebar (){
     )
     else
     return (
-    <aside className="md:w-[64px]  hidden md:block fixed text-slate-100 bg-black text:sm min-h-screen flex flex-col">
+    <aside className="md:w-[80px]  hidden md:block fixed text-slate-100 bg-black text:sm min-h-screen flex flex-col">
     <nav className="flex-1 items-center align-center mt-4">
         <ul className="p-2">
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <IoMdHome className="text-lg"/>
+                    <IoMdHome className="text-md"/>
                     <span className="mt-1 text-[10px]">Home</span>
                 </a>
             </li>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                    <SiYoutubeshorts className="text-lg"/>
+                    <SiYoutubeshorts className="text-md"/>
                     <span className="mt-1 text-[10px]">Shorts</span>
                 </a>
             </li>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                <MdSubscriptions className="text-lg"/>
+                <MdSubscriptions className="text-md"/>
                     <span className="mt-1 text-[10px]">Subscriptions</span>
                 </a>
             </li>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                <BiSolidVideos className="text-lg"/>
+                <BiSolidVideos className="text-md"/>
                     <span className="mt-1 text-[10px]">You</span>
                 </a>
             </li>
             <li>
                 <a href="#" className="flex flex-col align-center items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
-                <HiDownload className="text-lg"/>
+                <HiDownload className="text-md"/>
                     <span className="mt-1 text-[10px]">Downloads</span>
                 </a>
             </li>

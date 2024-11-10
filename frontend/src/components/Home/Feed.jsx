@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Suggestion from "../suggestions/Suggestion";
-
+import Sidebar from "../../components/Sidebar/Sidebar"
 function Feed()
 {
 
@@ -40,6 +40,7 @@ function Feed()
         <>
         
         <Suggestion />
+        <Sidebar />
     <div className={` ${menuState? 'ml-[120px] md:ml-[250px]': 'ml-[50px] md:ml-[70px]'} text-white bg-black grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-2 text-center mt-24 transition-ml duration-200 ease-in-out`}>
       {feed.map((video) => (
 
