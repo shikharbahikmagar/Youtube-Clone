@@ -5,24 +5,24 @@ function Suggestion() {
     const {menuState} = useMenuState();
 
    return (
-    <div className={`${menuState? 'ml-[252px]': 'ml-[65px]'} text-[10px] md:text-[15px] bg-black p-5 z-50 text-white fixed w-full `}>
+    <div className={`${menuState? 'ml-[230px]': 'ml-[65px]'} text-[10px] md:text-[13px] bg-[#0F0F0F] p-5 z-50 text-white fixed w-full `}>
     <ul className="flex gap-2 m-2">
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">All</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Related</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Trending</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Subscriptions</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">History</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Watch Later</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Favorites</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Uploads</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Music</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Gaming</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">News</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Sports</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Comedy</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Education</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Live</li>
-        <li className="p-1 pl-4 pr-4 border-1 bg-slate-800 rounded-xl">Podcast</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">All</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Related</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Trending</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Subscriptions</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">History</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Watch Later</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Favorites</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Uploads</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Music</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Gaming</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">News</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Sports</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Comedy</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Education</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Live</li>
+        <li className="p-1 pl-3 pr-3 border-1 bg-slate-800 rounded-lg">Podcast</li>
 </ul>
 </div>
    )

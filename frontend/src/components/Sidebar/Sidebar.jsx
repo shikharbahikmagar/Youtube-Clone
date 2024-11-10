@@ -19,7 +19,7 @@ function Sidebar (){
     
     if(menuState)
     return(
-        <aside className="md:w-[240px] hidden md:block md:w-[120px] fixed text-slate-100 bg-black text-[8px] md:text:sm min-h-screen flex flex-col transition-w duration-75 ease-in-out z-50">
+        <aside className="md:w-[220px] hidden md:block md:w-[100px] fixed text-slate-100 bg-[#0F0F0F] text-[8px] md:text:sm min-h-screen flex flex-col transition-w duration-75 ease-in-out z-50">
         <nav className="flex-1 m-2 md:m-4 divide-y divide-gray-600">
             <ul>
                 <li>
@@ -121,7 +121,7 @@ function Sidebar (){
     )
     else
     return (
-    <aside className="md:w-[80px]  hidden md:block fixed text-slate-100 bg-black text:sm min-h-screen flex flex-col">
+    <aside className="md:w-[80px]  hidden md:block fixed text-slate-100 bg-[#0F0F0F] text:sm min-h-screen flex flex-col">
     <nav className="flex-1 items-center align-center mt-4">
         <ul className="p-2">
             <li>

@@ -38,7 +38,7 @@ function Header() {
 
     return (
         <>
-    <header className="shadow sticky z-50 top-0 bg-black flex-col text-white">
+    <header className="shadow sticky z-50 top-0 h-[65px] bg-[#0F0F0F] flex-col text-white">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
@@ -54,7 +54,7 @@ function Header() {
 
                     <li className=''>
                         <ul className='flex items-center'>
-                            <li className=''><input className='lg:max-w-96 lg:w-96 md:indent-6 indent-3 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl border-1 border-slate-700 h-[31px] text-[12px] md:text-sm text-slate-200 bg-slate-950 ' type="text" placeholder='Search'/></li>
+                            <li className=''><input className='lg:max-w-96 lg:w-96 md:indent-6 indent-3 border rounded-tl-2xl  focus:outline-none focus:border-sky-500 rounded-bl-2xl bg-[#0F0F0F] border-1 border-slate-700 h-[31px] text-[12px] md:text-sm text-slate-200 bg-slate-950 ' type="text" placeholder='Search'/></li>
                             <li className='border  p-[6.1px;] rounded-tr-2xl rounded-br-2xl border-slate-700 pl-4 pr-4'><Link><CiSearch /></Link></li>
                             <li className='border bg-slate-700 p-1 hidden md:block rounded-full ml-6 border-slate-800'><Link><FaMicrophone /></Link></li>
                         </ul>
@@ -73,7 +73,7 @@ function Header() {
                             </li>
                             
                             <li>
-                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-xl text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "Sign In" }</button></Link> 
+                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "Sign In" }</button></Link> 
                             </li>
                     
                         </ul>
