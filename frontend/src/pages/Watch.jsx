@@ -82,7 +82,7 @@ function Watch() {
         getVideo();
         fetchData();
 
-    }, [])
+    }, [id])
     console.log(feed);
     if(videoDetails)
     {
@@ -193,9 +193,10 @@ function Watch() {
         <div className={`grid grid-cols-12 md:ml-[70px] md:mr-[50px] `}>
 
             {/* video player */}
-            <div className="md:col-span-8 col-span-12 mt-[50px]">
+            <div className="md:col-span-8 col-span-12 mt-[20px]">
                 <div className='md:block rounded-lg overflow-block'>
                     <ReactPlayer 
+                        className="rounded-xl overflow-hidden"  
                         url={videoDetails.video[0].videoFile}
                         playing={true} // Autoplay the video
                         controls={true} // Show player controls (play, pause, etc.)
@@ -307,9 +308,9 @@ function Watch() {
             {/* video player end */}
 
             {/* recommended videos */}
-            <div className="md:col-span-4 w-[425px] ml-[30px] md:block hidden mt-[50px] text-white">
-                  {feed.map((video) => (
-                    <div className="grid grid-cols-2 gap-2 mt-2">
+            <div className="md:col-span-4 w-[425px] ml-[30px] md:block hidden mt-[20px] text-white">
+                  {feed.map((video) => ( 
+                    <div className="grid grid-cols-2 gap-2 mt-2" key={video._id}>
                         <div className="col-span-1">
                             <Link to={`/watch/${video._id}`}><img className="rounded-lg md:rounded-2xl" src={video.thumbnail} alt="" /></Link>
                         </div> 
