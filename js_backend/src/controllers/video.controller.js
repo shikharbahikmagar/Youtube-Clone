@@ -9,7 +9,7 @@ const uploadVideo = asyncHandler ( async(req, res) => {
 
     const {title, description, isPublished} = req.body
     const user = req.user
-    //console.log(user);
+    //console.log({title, description, isPublished});
     if(!user){
         return new ApiError(401, "user not found!")
 
@@ -22,8 +22,8 @@ const uploadVideo = asyncHandler ( async(req, res) => {
 
     }
 
-    console.log(req.files?.videoFile[0].path);
-    console.log(req.files?.thumbnail[0].path);
+    // console.log(req.files?.videoFile[0].path);
+    // console.log(req.files?.thumbnail[0].path);
     
     
     const VideoLocalPath = req.files?.videoFile[0].path
@@ -121,19 +121,19 @@ const deleteVideo = asyncHandler(async(req, res) => {
         if(!user){
             return new ApiError(401, "please login to remove video")
         }
-        console.log(user._id.toString());
+        //console.log(user._id.toString());
 
         const userId = req.user?._id.toString()
         
         //video id from params
         const videoId = req.params.id
-        console.log(videoId);
+        //console.log(videoId);
         
     
         const video = await Video.findById(videoId)
-        console.log(video);
+        //console.log(video);
         const ownerId = video?.owner.toString()
-        console.log(ownerId.toString());
+        //console.log(ownerId.toString());
         
         
         //check if user is authorized to remove video
@@ -155,10 +155,10 @@ const deleteVideo = asyncHandler(async(req, res) => {
           };
     
         const publicId = extractPublicIdFromUrl(oldVideoPath)
-        console.log(publicId);
+        //console.log(publicId);
         //calling deleteVideoFromCludinary to remove video from cloudinary
         const removeFromCloudinary = await deleteVideoFromCloudinary(publicId)
-        console.log(removeFromCloudinary);
+        //console.log(removeFromCloudinary);
         
     
         if(!removeFromCloudinary){

@@ -11,22 +11,30 @@ function Login() {
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState("")
     const dispatch = useDispatch();
-//   const api = axios.create({
-//     baseURL: '${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/', // Base URL
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   });
+  const api = axios.create({
+    baseURL: '${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/', // Base URL
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
   let userData = {};
   const login = async(data) => {
-    console.log(data);
+    //console.log(data);
     try {
-      const response =  await api.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/users/login"`, data)
+      const response =  await api.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/users/login`, data)
       console.log(response);
       if(response)
       {
             // const userData = await api.get("users/current-user")
             //console.log(response.data.data.user);
+            const LoggedInUser = {
+                fullname: response.data.data.user.fullname,
+                email: response.data.data.user.email,
+                avatar: response.data.data.user.avatar,
+                username: response.data.data.user.username,
+                loginStatus: true,
+            }
+            localStorage.setItem("LoggedInUser", JSON.stringify(LoggedInUser));
             userData = response.data.data.user;
             dispatch(authLogin({userData}));
             navigate('/')
@@ -42,6 +50,8 @@ function Login() {
     
 
     }
+
+    
 
     return (
         <div

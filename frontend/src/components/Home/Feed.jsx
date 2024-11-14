@@ -41,7 +41,7 @@ function Feed()
         
         <Suggestion />
         <Sidebar />
-    <div className={` ${menuState? 'ml-[100px] md:ml-[230px]': 'ml-[50px] md:ml-[80px]'} text-white bg-[#0F0F0F] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-2 text-center mt-24 transition-ml duration-200 ease-in-out`}>
+    <div className={` ${menuState? 'ml-[100px] md:ml-[230px]': 'ml-[50px] md:ml-[80px]'} text-white bg-[#0F0F0F] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 overflow-hidden gap-1 text-center mt-24 transition-ml duration-200 ease-in-out`}>
       {feed.map((video) => (
 
       <div className="md:rounded-xl rounded:sm flex-col p-4 shadow" key={video._id}>

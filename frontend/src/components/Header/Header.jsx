@@ -1,4 +1,5 @@
-import React from 'react'
+import React , {useEffect} from 'react'
+import axios from 'axios'
 import {Link, NavLink} from 'react-router-dom'
 import Hamburger from 'hamburger-react';
 import { useState } from 'react';
@@ -12,20 +13,26 @@ import { PiCameraPlusFill } from "react-icons/pi";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import useMenuState from '@/contexts/navMenu';
 import { useSelector } from 'react-redux';
+import VideoUploadModal from '../VideoUploadModal/VideoUploadModal';
+import { Cookie } from 'lucide-react';
 
 
 function Header() {
     const {menuState, openState, closeState} = useMenuState();
-    const userStatus = useSelector((state) => state.auth.status);
+    //const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [userStatus, setUserStatus] = useState(false);
+
+    const [loggedInUser, setLoggedInUser] = useState(null);
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
     //console.log(user);
     var firstChar = null;
-   if(userStatus){
-    firstChar = Array.from(user.fullName)[0];
-    //console.log(firstChar);
-}
+
     
-    
+
 
    const onClickMenu = () => {
 
@@ -36,9 +43,36 @@ function Header() {
         }
     }
 
+    
+useEffect(() => {
+
+    const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"));
+
+        setLoggedInUser(LoggedUser);
+        if(LoggedUser){
+            setUserStatus(true);
+        }else{
+            setUserStatus(false);
+        }
+
+    //console.log(LoggedUser.avatar);
+    //console.log(loggedInUser);
+
+}, [userStatus]);
+
+// if(userStatus){
+//     firstChar = Array.from(loggedInUser.fullname)[0];
+//     //console.log(firstChar);
+// }
+
+    // console.log(loggedInUser);
+    
+
+    
+
     return (
         <>
-    <header className="shadow sticky z-50 top-0 h-[65px] bg-[#0F0F0F] flex-col text-white">
+    <header className="shadow sticky z-10 top-0 h-[65px] bg-[#0F0F0F] flex-col text-white">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
@@ -65,15 +99,15 @@ function Header() {
                             <li className='text-2xl hidden md:block'>
                                 <Link><IoIosNotifications /></Link>
                             </li>
-                            <li className='text-2xl hidden md:block'>
-                                <NavLink to="/upload-video"><PiCameraPlusFill /></NavLink>
+                            <li className='text-2xl hidden md:block cursor-pointer' onClick={openModal}><PiCameraPlusFill />
                             </li>
+                            <VideoUploadModal isOpen={isModalOpen} onRequestClose={closeModal} />
                             <li className='md:hidden block text-[12px] md:text-2xl items-right'>
                                 <Link><FaEllipsisVertical /></Link>
                             </li>
                             
                             <li>
-                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "Sign In" }</button></Link> 
+                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={loggedInUser.avatar} alt="" /> : "Sign In" }</button></Link> 
                             </li>
                     
                         </ul>
