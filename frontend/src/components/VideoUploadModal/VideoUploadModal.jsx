@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { X } from 'lucide-react';
@@ -12,6 +12,7 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState('');
+  const [accessToken, setAccessToken] = useState('');
 
   const handleVideoChange = (e) => {
     setVideoFile(e.target.files[0]);
@@ -47,8 +48,10 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/upload-video`, formData, {
+
+        
         headers: {
-          'Authorization': `Bearer {cookie.get('accessToken')}`,
+          'Authorization': `Bearer ${accessToken}`,
         },        
 
         onUploadProgress: (progressEvent) => {
@@ -66,6 +69,18 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
       console.error('Upload error:', error);
     }
   };
+
+  useEffect( () => {
+
+    const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"));
+
+    if(LoggedUser){
+        setAccessToken(LoggedUser.accessToken);
+       
+    }
+
+}, []);
+//console.log(accessToken);
 
   return (
     <Modal 

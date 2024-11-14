@@ -32,6 +32,7 @@ function Login() {
                 email: response.data.data.user.email,
                 avatar: response.data.data.user.avatar,
                 username: response.data.data.user.username,
+                accessToken: response.data.data.accessToken,
                 loginStatus: true,
             }
             localStorage.setItem("LoggedInUser", JSON.stringify(LoggedInUser));

@@ -72,7 +72,7 @@ useEffect(() => {
 
     return (
         <>
-    <header className="shadow sticky z-10 top-0 h-[65px] bg-[#0F0F0F] flex-col text-white">
+    <header className="shadow sticky z-10 top-0 h-[50px] bg-[#0F0F0F] flex-col text-white">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
@@ -107,7 +107,7 @@ useEffect(() => {
                             </li>
                             
                             <li>
-                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={loggedInUser.avatar} alt="" /> : "Sign In" }</button></Link> 
+                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-8 h-8' src={loggedInUser.avatar} alt="" /> : "Sign In" }</button></Link> 
                             </li>
                     
                         </ul>
