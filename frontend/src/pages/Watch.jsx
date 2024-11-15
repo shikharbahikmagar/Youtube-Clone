@@ -69,7 +69,7 @@ function Watch() {
             try {
                     const video = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/watch/${id}`)
                     setVideoDetails(video.data.data);
-                    console.log(video);
+                   // console.log(video);
                     
 
             } catch (error) {
@@ -83,7 +83,7 @@ function Watch() {
         fetchData();
 
     }, [id])
-    console.log(feed);
+   // console.log(feed);
     if(videoDetails)
     {
     return (

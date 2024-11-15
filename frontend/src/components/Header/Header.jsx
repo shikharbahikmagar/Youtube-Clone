@@ -14,6 +14,7 @@ import { FaEllipsisVertical } from "react-icons/fa6";
 import useMenuState from '@/contexts/navMenu';
 import { useSelector } from 'react-redux';
 import VideoUploadModal from '../VideoUploadModal/VideoUploadModal';
+import Setting from '../Setting/Setting';
 import { Cookie } from 'lucide-react';
 
 
@@ -22,12 +23,16 @@ function Header() {
     //const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSettingOpen, setIsSettingOpen] = useState(false);
     const [userStatus, setUserStatus] = useState(false);
 
     const [loggedInUser, setLoggedInUser] = useState(null);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    const openSettingModal = () => setIsSettingOpen(true);
+    const closSettingeModal = () => setIsSettingOpen(false);
     //console.log(user);
     var firstChar = null;
 
@@ -105,9 +110,9 @@ useEffect(() => {
                             <li className='md:hidden block text-[12px] md:text-2xl items-right'>
                                 <Link><FaEllipsisVertical /></Link>
                             </li>
-                            
+                            <Setting isSettingOpen={isSettingOpen} onRequestCloseSetting={closSettingeModal}/>
                             <li>
-                                <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-8 h-8' src={loggedInUser.avatar} alt="" /> : "Sign In" }</button></Link> 
+                                <button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-8 h-8'  onClick={openSettingModal} src={loggedInUser.avatar} alt="" /> : "Sign In" }</button>
                             </li>
                     
                         </ul>
