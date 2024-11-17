@@ -15,7 +15,7 @@ import useMenuState from '@/contexts/navMenu';
 import { useSelector } from 'react-redux';
 import VideoUploadModal from '../VideoUploadModal/VideoUploadModal';
 import Setting from '../Setting/Setting';
-import { Cookie } from 'lucide-react';
+import { Cookie, SpaceIcon } from 'lucide-react';
 
 
 function Header() {
@@ -112,8 +112,8 @@ useEffect(() => {
                             </li>
                             <Setting isSettingOpen={isSettingOpen} onRequestCloseSetting={closSettingeModal}/>
                             <li>
-                                <button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-8 h-8'  onClick={openSettingModal} src={loggedInUser.avatar} alt="" /> : "Sign In" }</button>
-                            </li>
+                               <button className={` text-[10px] md:text-sm ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-md text-blue-400 md:p-1 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-8 h-8'  onClick={openSettingModal} src={loggedInUser.avatar} alt="" /> : <Link to="/login"><span>Sign In</span> </Link>  }</button>
+                            </li> 
                     
                         </ul>
                     </li>

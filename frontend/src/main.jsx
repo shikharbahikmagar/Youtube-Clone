@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx'
 import { Provider } from 'react-redux';
 import store from './store/store';
 import Watch from './pages/Watch.jsx';
+import Logout from './pages/Logout.jsx';
 
 const router = createBrowserRouter([
   // createRoutesFromElements(
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         element: <Login />
       }
     ]
+  },
+  {
+    path: "logout",
+    element: <Logout />
   }
 ]);
 
