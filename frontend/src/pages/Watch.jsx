@@ -22,10 +22,13 @@ import { MdMusicNote } from "react-icons/md";
 import { SiYoutubegaming } from "react-icons/si";
 import { BiSolidTrophy } from "react-icons/bi";
 import { HiDownload } from "react-icons/hi";
-
+import { PiShareFatBold } from "react-icons/pi"; 
 import ReactPlayer from "react-player";
+import { LiaDownloadSolid } from "react-icons/lia";
+import { RxDividerVertical } from "react-icons/rx";
 
 function Watch() {
+
 
     const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
@@ -37,6 +40,7 @@ function Watch() {
     firstChar = Array.from(user.fullName)[0];
     //console.log(firstChar);
 }
+
 
     const {id} = useParams();
     //console.log(id);
@@ -196,7 +200,7 @@ function Watch() {
             <div className="md:col-span-8 col-span-12 mt-[20px]">
                 <div className='md:block rounded-lg overflow-block'>
                     <ReactPlayer 
-                        className="rounded-xl overflow-hidden"  
+                        className="rounded-2xl overflow-hidden"  
                         url={videoDetails.video[0].videoFile}
                         playing={true} // Autoplay the video
                         controls={true} // Show player controls (play, pause, etc.)
@@ -228,19 +232,23 @@ function Watch() {
                         </div>
             
                         {/* right part */}
-                        <div className="flex gap-4 ml-[30%] justify-center items-center">
-                            <div className="flex text-white gap-4 justify-center items-center bg-neutral-800 rounded-lg p-2 pl-4 pr-4">
+                        <div className="flex gap-4 ml-[20%] justify-center items-center">
+                            <div className="flex text-white gap-4 justify-center items-center bg-neutral-800 rounded-l-2xl p-2 pl-4 pr-4">
                                 <div className="flex gap-2 text-[17px] justify-center items-center ">
-                                    <AiOutlineLike className="divide-x"/>
-                                    <p className="text-[17px]">1.7k</p>
+                                    <AiOutlineLike/>
+                                    <p className="text-[14px] font-semibold">1.7k</p>
                                 </div>
+                               
+                            </div>
+                            <div className="flex text-white justify-center items-center bg-neutral-800 rounded-r-2xl -ml-6  p-2 pl-4 pr-4">
                                 <AiOutlineDislike className="text-[17px]"/>
                             </div>
+                            
                             <div>
-                            <button className="p-2 pl-4 pr-4 text-[17px] bg-neutral-800 text-white rounded-lg">Share</button>
+                            <button className="p-2 pl-4 pr-4 text-[15px] bg-neutral-800 text-white flex rounded-2xl"><PiShareFatBold /> <span className="ml-2">Share</span></button>
                             </div>
                             <div>
-                            <button className="p-2 pl-4 pr-4 text-[17px] bg-neutral-800 text-white rounded-lg">save</button>
+                            <button className="p-2 pl-4 pr-4 text-[15px] bg-neutral-800 text-white rounded-2xl flex"><LiaDownloadSolid /> <span className="ml-2">Download</span></button>
                             </div>
                         </div>
                 </div>

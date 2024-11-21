@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import Watch from './pages/Watch.jsx';
 import Logout from './pages/Logout.jsx';
+import Modal from 'react-modal'
 
 const router = createBrowserRouter([
   // createRoutesFromElements(
@@ -55,6 +56,8 @@ const router = createBrowserRouter([
   }
 ]);
 
+// Assuming your app's root element is an element with id "root"
+Modal.setAppElement('#root');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
