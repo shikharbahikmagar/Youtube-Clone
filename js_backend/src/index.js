@@ -13,7 +13,7 @@ const app = express();
 // Middleware setup
 app.use(
   cors({
-    origin: 'https://youtube-clone-ten-coral.vercel.app', // Replace with your frontend URL when deployed
+    origin: 'https://www.bahik.tech', // Replace with your frontend URL when deployed
     credentials: true,
     methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
   })
