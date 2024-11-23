@@ -1,6 +1,6 @@
 # YouTube Clone with React, MongoDB, Multer, JWT & Tailwind CSS
 
-link: https://youtube-clone-ten-coral.vercel.app/
+link: https://www.bahik.tech
 
 
 This is a **YouTube Clone** built using **React**, **MongoDB**, **Multer**, **JWT (JSON Web Tokens)** for authentication, and **Tailwind CSS** for styling. The application allows users to upload, watch, and interact with videos, providing a similar experience to YouTube with modern tech stack integration.
