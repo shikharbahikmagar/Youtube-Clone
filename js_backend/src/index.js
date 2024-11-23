@@ -20,7 +20,7 @@ app.listen(port, () => {
 
 const allowedOrigins = [
   'http://localhost:5173', // Localhost (Development)
-  'https://www.bahik.tech/', // Localhost (Development)
+  'https://www.bahik.tech', // Localhost (Development)
    // Vercel (Production)
 ];
 
@@ -34,6 +34,8 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  credentials: true,
+  methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
 };
 
 app.use(cors(corsOptions));
