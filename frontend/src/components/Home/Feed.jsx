@@ -7,7 +7,7 @@ import Suggestion from "../suggestions/Suggestion";
 import Sidebar from "../../components/Sidebar/Sidebar"
 function Feed()
 {
-
+  const baseURL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL || 'https://yt-clone-backend-pi.vercel.app';
     const {menuState} = useMenuState();
     const [feed, setFeed] = useState([]);
 
@@ -15,7 +15,7 @@ function Feed()
       const fetchData = async () => {
       try {
         
-          const videos = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/get-videos`);
+          const videos = await axios.get(`${baseURL}/api/v1/videos/get-videos`);
 
           //console.log(videos);
           
