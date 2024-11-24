@@ -29,7 +29,7 @@ import { RxDividerVertical } from "react-icons/rx";
 
 function Watch() {
 
-    //TODO: subscriber section responsive
+   
 
     const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
