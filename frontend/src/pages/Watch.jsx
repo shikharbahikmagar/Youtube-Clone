@@ -29,6 +29,7 @@ import { RxDividerVertical } from "react-icons/rx";
 
 function Watch() {
 
+    //TODO: subscriber section responsive
 
     const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
@@ -198,7 +199,7 @@ function Watch() {
 
             {/* video player */}
             <div className="md:col-span-8 2xl:col-span-9 col-span-12 mt-[20px]">
-                <div className='md:block rounded-lg md:w-[auto] md:h-[533px] 2xl:w-[1265px] 2xl:h-[720px] overflow-block'>
+                <div className='md:block rounded-lg md:w-[auto] md:h-[533px] 2xl:h-[720px] overflow-block'>
                     <ReactPlayer 
                         className="rounded-2xl w-full h-auto overflow-hidden"  
                         url={videoDetails.video[0].videoFile}
@@ -214,48 +215,48 @@ function Watch() {
                 </div>
                 
                 {/* subscribes like share */}
-                <div className="flex gap-16 md:w-[auto] 2xl:w-[1265px] sm:text-xs inline-block mt-8">
+                <div className="flex md:gap-16 w-[auto] 2xl:w-[auto] sm:text-xs inline-block mt-8">
                     {/* left part */}
                     <div className="flex gap-4">
-                        <div className="flex gap-4 w-[300px] items-center ">
+                        <div className="flex lg:gap-4 items-center ">
                                 <div className="">
-                                    <img className="rounded-full w-14 h-14" src={videoDetails.video[0].ownerDetails[0].avatar} alt="" />
+                                    <img className="rounded-full w-8 h-8 lg:w-14 lg:h-14" src={videoDetails.video[0].ownerDetails[0].avatar} alt="" />
                                 </div>
                                 <div className="flex flex-col">
-                                    <p className="text-white">{videoDetails.video[0].ownerDetails[0].fullName}</p>
+                                    <p className="text-white text-xs xl:text-[17px]">{videoDetails.video[0].ownerDetails[0].fullName}</p>
                                     <p className="text-white text-xs">4.5k subscribers</p>
                                 </div>
                                 <div>
-                                    <button className="p-1 pl-4 pr-4 bg-slate-200 rounded-2xl">Subscribe</button>
+                                    <button className="p-1 pl-4 pr-4 bg-slate-200 text-xs xl:text-[17px] rounded-2xl">Subscribe</button>
                                 </div>
                             </div>
                         </div>
             
                         {/* right part */}
-                        <div className="flex gap-4 md:ml-[20%] justify-center items-center">
+                        <div className="flex lg:gap-4 justify-center right-0 items-center">
                             <div className="flex text-white gap-4 justify-center items-center bg-neutral-800 rounded-l-2xl p-2 pl-4 pr-4">
                                 <div className="flex gap-2 text-[17px] justify-center items-center ">
                                     <AiOutlineLike/>
-                                    <p className="text-[14px] font-semibold">1.7k</p>
+                                    <p className="xl:text-[14px] text-xs xl:font-semibold">1.7k</p>
                                 </div>
                                
                             </div>
                             <div className="flex text-white justify-center items-center bg-neutral-800 rounded-r-2xl -ml-6  p-2 pl-4 pr-4">
-                                <AiOutlineDislike className="text-[17px]"/>
+                                <AiOutlineDislike className="text-xs lg:text-[17px]"/>
                             </div>
                             
                             <div>
-                            <button className="p-2 pl-4 pr-4 text-[15px] bg-neutral-800 text-white flex rounded-2xl"><PiShareFatBold /> <span className="ml-2">Share</span></button>
+                            <button className="p-2 pl-4 pr-4 text-xs xl:text-[15px] bg-neutral-800 text-white flex rounded-2xl"><PiShareFatBold /> <span className="ml-2">Share</span></button>
                             </div>
                             <div>
-                            <button className="p-2 pl-4 pr-4 text-[15px] bg-neutral-800 text-white rounded-2xl flex"><LiaDownloadSolid /> <span className="ml-2">Download</span></button>
+                            <button className="p-2 pl-4 pr-4 text-xs xl:text-[15px] bg-neutral-800 text-white rounded-2xl flex"><LiaDownloadSolid /> <span className="ml-2">Download</span></button>
                             </div>
                         </div>
                 </div>
 
                 {/* description */}
 
-                <div className="bg-neutral-800 md:w-[936px]  2xl:w-[1265px] mt-4 mb-4 rounded-lg text-sm">
+                <div className="bg-neutral-800 w-[auto]  2xl:w-[auto] mt-4 mb-4 rounded-lg text-sm">
                   <div className="p-[2px]">
                   <div className="text-white flex m-4 gap-4">
                         <p className="">{videoDetails.video[0].views} views</p>
@@ -269,7 +270,7 @@ function Watch() {
                 </div>
 
                 {/* comments and filter */}
-                <div className="mt-8 text-white md:w-[936px]  2xl:w-[1265px] font-bold text-xl">
+                <div className="mt-8 text-white md:w-[auto]  2xl:w-[auto] font-bold text-xl">
                     <ul className="flex gap-8 items-center">
                         <li>127 Comments</li>
                         <li className="flex gap-2 items-center"><BsFilterLeft size={30} /> <span className="text-sm">Sort by</span></li>
@@ -278,7 +279,7 @@ function Watch() {
                 </div>
 
                 {/* comment input */}
-                <div className="mt-8 md:w-[936px]  2xl:w-[1265px]" >
+                <div className="mt-8 md:w-[auto]  2xl:w-[auto]" >
                     <ul className="flex items-center gap-4">
                         <li>
                             <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
@@ -293,7 +294,7 @@ function Watch() {
 
 
                 {/* comments */}
-                <div className="text-white md:w-[936px]  2xl:w-[1265px] grid-col-12 mt-20 w-full flex gap-4">
+                <div className="text-white md:w-[auto]  2xl:w-[auto] grid-col-12 mt-20 w-full flex gap-4">
                     <div className="col-span-2"> 
                         <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
                     </div>
