@@ -1,42 +1,46 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import SimpleLayout from './SimpleLayout';
-import './index.css'
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
-import Feed from './components/Home/Feed.jsx'
-import Login from './pages/Login.jsx'
+import React, { Suspense } from 'react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import Modal from 'react-modal';
 import store from './store/store';
-import Watch from './pages/Watch.jsx';
-import Logout from './pages/Logout.jsx';
-import Modal from 'react-modal'
+import App from './App.jsx';
+import SimpleLayout from './SimpleLayout';
+import './index.css';
+
+// Lazy load all route components
+const Feed = React.lazy(() => import('./components/Home/Feed.jsx'));
+const Watch = React.lazy(() => import('./pages/Watch.jsx'));
+const Login = React.lazy(() => import('./pages/Login.jsx'));
+const Logout = React.lazy(() => import('./pages/Logout.jsx'));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen mt-60">
+    <div className="text-lg text-green-400 z-999">Loading...</div>
+  </div>
+);
+
+// Wrapper component to add Suspense
+const LazyComponent = ({ component: Component }) => (
+  <Suspense fallback={<LoadingFallback />}>
+    <Component />
+  </Suspense>
+);
 
 const router = createBrowserRouter([
-  // createRoutesFromElements(
-  //   <Route path="/" element={<App/>} >
-  //     <Route path="" element={<Home/>} />
-  //     <Route path="/about" element={<Home />} />
-  //   </Route>,
-  //   <Route path="/login" element={<SimpleLayout />}>
-  //     <Route index element={<Login />} />
-  //   </Route>
-  // )
   {
     path: "/",
     element: <App />,
     children: [
       {
         path: "",
-        element: <Feed />
-      },
-      {
-        path: "about",
-        element: <Feed />
+        element: <LazyComponent component={Feed} />
       },
       {
         path: "watch/:id",
-        element: <Watch />
+        element: <LazyComponent component={Watch} />
       }
     ]
   },
@@ -46,23 +50,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Login />
+        element: <LazyComponent component={Login} />
       }
     ]
   },
   {
     path: "logout",
-    element: <Logout />
+    element: <LazyComponent component={Logout} />
   }
 ]);
 
-// Assuming your app's root element is an element with id "root"
+// Set Modal app element
 Modal.setAppElement('#root');
 
+// Create and render root
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-    <RouterProvider router = {router} />
+      <RouterProvider router={router} />
     </Provider>
-  </StrictMode>,
-)
+  </StrictMode>
+);

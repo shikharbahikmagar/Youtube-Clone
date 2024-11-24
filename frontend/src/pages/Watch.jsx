@@ -197,15 +197,15 @@ function Watch() {
         <div className={`grid grid-cols-12 md:ml-[70px] md:mr-[50px] `}>
 
             {/* video player */}
-            <div className="md:col-span-8 col-span-12 mt-[20px]">
-                <div className='md:block rounded-lg overflow-block'>
+            <div className="md:col-span-8 2xl:col-span-9 col-span-12 mt-[20px]">
+                <div className='md:block rounded-lg md:w-[auto] md:h-[533px] 2xl:w-[1265px] 2xl:h-[720px] overflow-block'>
                     <ReactPlayer 
-                        className="rounded-2xl overflow-hidden"  
+                        className="rounded-2xl w-full h-auto overflow-hidden"  
                         url={videoDetails.video[0].videoFile}
+                        width="100%"
+                        height="auto"
                         playing={true} // Autoplay the video
                         controls={true} // Show player controls (play, pause, etc.)
-                        width="936px" // Make the player full width
-                        height="533px" // Set player height
                         muted={false} // You can set muted 
                      />
                 </div>
@@ -214,7 +214,7 @@ function Watch() {
                 </div>
                 
                 {/* subscribes like share */}
-                <div className="flex gap-16 w-[936px] sm:text-xs inline-block mt-8">
+                <div className="flex gap-16 md:w-[auto] 2xl:w-[1265px] sm:text-xs inline-block mt-8">
                     {/* left part */}
                     <div className="flex gap-4">
                         <div className="flex gap-4 w-[300px] items-center ">
@@ -232,7 +232,7 @@ function Watch() {
                         </div>
             
                         {/* right part */}
-                        <div className="flex gap-4 ml-[20%] justify-center items-center">
+                        <div className="flex gap-4 md:ml-[20%] justify-center items-center">
                             <div className="flex text-white gap-4 justify-center items-center bg-neutral-800 rounded-l-2xl p-2 pl-4 pr-4">
                                 <div className="flex gap-2 text-[17px] justify-center items-center ">
                                     <AiOutlineLike/>
@@ -255,7 +255,7 @@ function Watch() {
 
                 {/* description */}
 
-                <div className="bg-neutral-800 w-[936px] mt-4 mb-4 rounded-lg text-sm">
+                <div className="bg-neutral-800 md:w-[936px]  2xl:w-[1265px] mt-4 mb-4 rounded-lg text-sm">
                   <div className="p-[2px]">
                   <div className="text-white flex m-4 gap-4">
                         <p className="">{videoDetails.video[0].views} views</p>
@@ -269,7 +269,7 @@ function Watch() {
                 </div>
 
                 {/* comments and filter */}
-                <div className="mt-8 text-white w-[936px] font-bold text-xl">
+                <div className="mt-8 text-white md:w-[936px]  2xl:w-[1265px] font-bold text-xl">
                     <ul className="flex gap-8 items-center">
                         <li>127 Comments</li>
                         <li className="flex gap-2 items-center"><BsFilterLeft size={30} /> <span className="text-sm">Sort by</span></li>
@@ -278,7 +278,7 @@ function Watch() {
                 </div>
 
                 {/* comment input */}
-                <div className="mt-8 w-[936px]">
+                <div className="mt-8 md:w-[936px]  2xl:w-[1265px]" >
                     <ul className="flex items-center gap-4">
                         <li>
                             <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
@@ -293,7 +293,7 @@ function Watch() {
 
 
                 {/* comments */}
-                <div className="text-white w-[936px] grid-col-12 mt-20 w-full flex gap-4">
+                <div className="text-white md:w-[936px]  2xl:w-[1265px] grid-col-12 mt-20 w-full flex gap-4">
                     <div className="col-span-2"> 
                         <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
                     </div>
@@ -316,7 +316,7 @@ function Watch() {
             {/* video player end */}
 
             {/* recommended videos */}
-            <div className="md:col-span-4 w-[425px] ml-[30px] md:block hidden mt-[20px] text-white">
+            <div className="md:col-span-4 2xl:col-span-3 md:w-[425px] 2xl:mr-[100px] md:ml-[30px] 2xl:ml-[1] md:block hidden mt-[20px] text-white">
                   {feed.map((video) => ( 
                     <div className="grid grid-cols-2 gap-2 mt-2" key={video._id}>
                         <div className="col-span-1">

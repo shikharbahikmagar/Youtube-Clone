@@ -77,7 +77,7 @@ useEffect(() => {
 
     return (
         <>
-    <header className="shadow sticky z-10 top-0 h-[50px] bg-[#0F0F0F] flex-col text-white">
+    <header className="shadow sticky z-10 left-0 top-0 fixed h-[50px] bg-[#0F0F0F] flex-col text-white">
             <nav>
                 <ul className="flex justify-between items-center align-center">
                     <li className=''>
