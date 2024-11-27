@@ -199,7 +199,7 @@ function Watch() {
 
             {/* video player */}
             <div className="md:col-span-8 2xl:col-span-9 col-span-12 mt-[20px]">
-                <div className='md:block rounded-lg md:w-[auto] md:h-[533px] 2xl:h-[720px] overflow-block'>
+                <div className='md:block rounded-lg md:w-[auto] h-[auto] 2xl:h-[720px] overflow-block'>
                     <ReactPlayer 
                         className="rounded-2xl w-full h-auto overflow-hidden"  
                         url={videoDetails.video[0].videoFile}
@@ -215,7 +215,7 @@ function Watch() {
                 </div>
                 
                 {/* subscribes like share */}
-                <div className="flex md:gap-16 w-[auto] 2xl:w-[auto] sm:text-xs inline-block mt-8">
+                <div className="flex md:gap-16 w-[auto] 2xl:w-[auto] text-xs inline-block mt-8">
                     {/* left part */}
                     <div className="flex gap-4">
                         <div className="flex lg:gap-4 items-center ">
@@ -227,7 +227,7 @@ function Watch() {
                                     <p className="text-white text-xs">4.5k subscribers</p>
                                 </div>
                                 <div>
-                                    <button className="p-1 pl-4 pr-4 bg-slate-200 text-xs xl:text-[17px] rounded-2xl">Subscribe</button>
+                                    <button className="p-1 pl-4 pr-4 bg-slate-200 text-xs xl:text-[15px] rounded-2xl">Subscribe</button>
                                 </div>
                             </div>
                         </div>
