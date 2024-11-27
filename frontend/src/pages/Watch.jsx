@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Iframe from 'react-iframe'
 import { useParams } from "react-router-dom";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
@@ -8,7 +7,7 @@ import useMenuState from "@/contexts/navMenu";
 import moment from "moment";
 import { BsFilterLeft } from "react-icons/bs";
 import { useSelector } from 'react-redux';
-import {Link, NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { RxDotsVertical } from "react-icons/rx";
 
 import { IoMdHome } from "react-icons/io";
@@ -21,11 +20,10 @@ import { ImFire } from "react-icons/im";
 import { MdMusicNote } from "react-icons/md";
 import { SiYoutubegaming } from "react-icons/si";
 import { BiSolidTrophy } from "react-icons/bi";
-import { HiDownload } from "react-icons/hi";
+
 import { PiShareFatBold } from "react-icons/pi"; 
 import ReactPlayer from "react-player";
 import { LiaDownloadSolid } from "react-icons/lia";
-import { RxDividerVertical } from "react-icons/rx";
 
 function Watch() {
 
@@ -33,21 +31,17 @@ function Watch() {
 
     const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
-    const [loading, setLoading] = useState(true);
+
     //console.log(user);
     const [feed, setFeed] = useState([]);
-    var firstChar = null;
-   if(userStatus){
-    firstChar = Array.from(user.fullName)[0];
-    //console.log(firstChar);
-}
-
 
     const {id} = useParams();
     //console.log(id);
     const {menuState} = useMenuState();
 
     const [videoDetails, setVideoDetails] = useState();
+
+    const [comments, setComments] = useState([]);
     
     useEffect(() => {
 
@@ -64,7 +58,7 @@ function Watch() {
               
       
              catch (error) {
-              console.log("error fetching the data");
+              console.log(error);
               
             }
           }
@@ -78,17 +72,33 @@ function Watch() {
                     
 
             } catch (error) {
-                console.log("error fetching the data");
+                console.log(error);
                 
             }
 
         }
 
+        const getComments = async() => {
+           
+            try {
+                const fetchedComments = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/get-comments/${id}`)
+                setComments(fetchedComments.data.data.comments);
+            } catch (error) {
+                console.log(error);
+                
+            }
+        }
+
         getVideo();
         fetchData();
+        getComments()
 
     }, [id])
-   // console.log(feed);
+    console.log(comments);
+    // if (!Array.isArray(comments)) {
+    //     console.log("not an array");
+    //      // or a loading spinner
+    //   }
     if(videoDetails)
     {
     return (
@@ -198,8 +208,8 @@ function Watch() {
         <div className={`grid grid-cols-12 md:ml-[70px] md:mr-[50px] `}>
 
             {/* video player */}
-            <div className="md:col-span-8 2xl:col-span-9 col-span-12 mt-[20px]">
-                <div className='md:block rounded-lg md:w-[auto] h-[auto] 2xl:h-[720px] overflow-block'>
+            <div className="md:col-span-8 3xl:col-span-9 col-span-12 mt-[20px]">
+                <div className='md:block rounded-lg md:w-[auto] h-[auto] 3xl:h-[720px] overflow-block'>
                     <ReactPlayer 
                         className="rounded-2xl w-full h-auto overflow-hidden"  
                         url={videoDetails.video[0].videoFile}
@@ -295,29 +305,33 @@ function Watch() {
 
                 {/* comments */}
                 <div className="text-white md:w-[auto]  2xl:w-[auto] grid-col-12 mt-20 w-full flex gap-4">
-                    <div className="col-span-2"> 
-                        <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
-                    </div>
-                    <ul className="col-span-8">
-                        <li className="text-sm">@username <span className="text-xs text-gray-400">1 hour ago</span></li>
-                        <li className="pt-2 text-sm">
-                            Pinned by Free Documentary to Kathmandu, destined for luxurious pharmacies in Hong Kong.@FreeDocumentary
-                            6 days ago (edited)
-                            Every spring in remote Nepal, tens of thousands of villagers embark on a perilous trek to the Himalayas to collect Yarsagumba, a rare caterpillar fungus worth up to $60,000 per kilo in China due to its medicinal properties. Suga Lal and his family leave their meager fields to join the Yarsagumba pickers, facing the challenge of finding this hidden treasure high in the mountains. Meanwhile, Dhanchandra, an agent for a wealthy dealer in Kathmandu, travels between camps with cash to buy the best specimens, risking robbery along the way. The harvested fungus is escorted by soldiers  </li>
-                        <li className="pt-2 flex items-center gap-2">
-                            <AiOutlineLike size={20} /><span className="text-xs text-gray-400">26</span>
-                            <AiOutlineDislike size={20} />
-                        </li>
-                    </ul>
-                    <ul className="items-center col-span-2">
-                        <li className=""><RxDotsVertical  size={20}/></li>
-                    </ul>
+                  {comments?.map((comment) => (
+                     <>
+                     <div>
+                     <div className="col-span-2"> 
+                      <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
+                  </div>
+                  <ul className="col-span-8">
+                      <li className="text-sm" key={comment?._id}>@username  <span className="text-xs text-gray-400">1 hour ago</span></li>
+                      <li className="pt-2 text-sm" key={comment?._id}>
+                        { comment.comment} </li>
+                      <li className="pt-2 flex items-center gap-2">
+                          <AiOutlineLike size={20} /><span className="text-xs text-gray-400">26</span>
+                          <AiOutlineDislike size={20} />
+                      </li>
+                  </ul>
+                  <ul className="items-center col-span-2">
+                      <li className=""><RxDotsVertical  size={20}/></li>
+                  </ul>
+                     </div>
+                     </>
+                  ))}
                 </div>
             </div>
             {/* video player end */}
 
             {/* recommended videos */}
-            <div className="md:col-span-4 2xl:col-span-3 md:w-[425px] 2xl:mr-[100px] md:ml-[30px] 2xl:ml-[1] md:block hidden mt-[20px] text-white">
+            <div className="md:col-span-4 3xl:col-span-3 md:w-[425px] 2xl:mr-[100px] md:ml-[30px] 2xl:ml-[1] md:block hidden mt-[20px] text-white">
                   {feed.map((video) => ( 
                     <div className="grid grid-cols-2 gap-2 mt-2" key={video._id}>
                         <div className="col-span-1">
