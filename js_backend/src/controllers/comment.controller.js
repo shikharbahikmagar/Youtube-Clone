@@ -73,8 +73,35 @@ const getComments = asyncHandler(async(req, res) => {
     const vid = new mongoose.Types.ObjectId(trimmedVideoId);
    // console.log(vid); 
 
-    const comments = await Comment.find({video: vid})
+    const comments = await Comment.aggregate([
+        {
+            $match: {
+                video: new mongoose.Types.ObjectId(video_id)
+            }
+        }, 
+        {
+            $lookup: {
 
+                from: "users",
+                localField: "user",
+                foreignField: "_id",
+                as: "ownerDetails",
+                pipeline: [
+
+                    {
+                        $project: {
+                            fullName: 1,
+                            username: 1,
+                            avatar: 1
+                        }
+                    }
+                ]
+            }
+        }
+    ])
+
+    console.log(comments);
+    
     if(!comments)
     {
         return new ApiError("404", "no comments")

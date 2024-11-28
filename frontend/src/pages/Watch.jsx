@@ -132,7 +132,7 @@ function Watch() {
         getComments()
 
     }, [id])
-    //console.log(comments);
+    console.log(comments);
     // if (!Array.isArray(comments)) {
     //     console.log("not an array");
     //      // or a loading spinner
@@ -352,10 +352,10 @@ function Watch() {
                <>
             <div className="text-white grid-col-12 key={comment?._id}  mt-20 w-full flex gap-4">
                     <div className="col-span-2"> 
-                        <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
+{ <img className='rounded-full w-12 h-12' src={comment.ownerDetails[0].avatar} alt="" /> }
                     </div>
                     <div className="col-span-8 w-full">
-                        <div className="text-sm" >@username  <span className="text-xs text-gray-400">{moment(comment.createdAt).fromNow()}</span></div>
+                        <div className="text-sm" >@{comment.ownerDetails[0].username} <span className="text-xs text-gray-400">{moment(comment.createdAt).fromNow()}</span></div>
                         <div className="pt-2 text-sm w-full">
                             { comment.comment} </div>
                         <div className="pt-2 flex items-center gap-2">
