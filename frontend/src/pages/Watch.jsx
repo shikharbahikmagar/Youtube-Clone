@@ -9,7 +9,6 @@ import { BsFilterLeft } from "react-icons/bs";
 import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { RxDotsVertical } from "react-icons/rx";
-
 import { IoMdHome } from "react-icons/io";
 import { MdSubscriptions } from "react-icons/md";
 import { SiYoutubeshorts } from "react-icons/si";
@@ -20,14 +19,16 @@ import { ImFire } from "react-icons/im";
 import { MdMusicNote } from "react-icons/md";
 import { SiYoutubegaming } from "react-icons/si";
 import { BiSolidTrophy } from "react-icons/bi";
-
 import { PiShareFatBold } from "react-icons/pi"; 
 import ReactPlayer from "react-player";
 import { LiaDownloadSolid } from "react-icons/lia";
+import { useForm } from "react-hook-form";
 
 function Watch() {
 
+
    
+    const [accessToken, setAccessToken] = useState(); 
 
     const userStatus = useSelector((state) => state.auth.status);
     const user = useSelector((state) => state.auth.userData);
@@ -42,7 +43,36 @@ function Watch() {
     const [videoDetails, setVideoDetails] = useState();
 
     const [comments, setComments] = useState([]);
+
+    const {register, reset, handleSubmit, formState: { errors },} = useForm();
     
+    const onSubmit = async (data) => {
+
+        const newComment =  {
+            video_id: id,
+            comment: data.comment,
+        }
+            try {
+
+                const createComment = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/create-comment`, newComment, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`,
+                      },       
+                })
+
+                setComments((prevComments) => [newComment, ...prevComments])
+
+               console.log(createComment);
+                    
+
+            } catch (error) {
+                console.log(error);
+                
+            }
+            reset()
+        
+    }
+
     useEffect(() => {
 
             const fetchData = async () => {
@@ -89,12 +119,20 @@ function Watch() {
             }
         }
 
+        const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"))
+
+        if(LoggedUser)
+        {
+            setAccessToken(LoggedUser.accessToken)
+        }
+        
+        
         getVideo();
         fetchData();
         getComments()
 
     }, [id])
-    console.log(comments);
+    //console.log(comments);
     // if (!Array.isArray(comments)) {
     //     console.log("not an array");
     //      // or a loading spinner
@@ -290,43 +328,47 @@ function Watch() {
 
                 {/* comment input */}
                 <div className="mt-8 md:w-[auto]  2xl:w-[auto]" >
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <ul className="flex items-center gap-4">
                         <li>
                             <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
                         </li>
-                        <li className="w-full"><input type="text" placeholder="Add a comment..." className="text-white border-b-[1px] focus:outline-none  border-slate-300 focus:border-b-[3px] w-full bg-transparent "/></li>
+                        <li className="w-full">
+                        <input type="text" placeholder="Add a comment..." className="text-white border-b-[1px] focus:outline-none  border-slate-300 focus:border-b-[3px] w-full bg-transparent " {...register("comment", {
+                            required: "comment is required"})}/>
+                        {errors.name && <p>{errors.name.message}</p>}
+                            </li>
                     </ul> 
                     <ul className="text-white text-sm flex gap-4 items-center float-right mt-2">
                         <li><button>Cancel</button></li>
-                        <li><button className="bg-gray-800 p-2 rounded-xl">Comment</button></li>
-                    </ul>                   
+                        <li><button type="submit" className="bg-gray-800 p-2 rounded-xl">Comment</button></li>
+                    </ul>  
+                    </form>                 
                 </div>
 
 
                 {/* comments */}
-                <div className="text-white md:w-[auto]  2xl:w-[auto] grid-col-12 mt-20 w-full flex gap-4">
-                  {comments?.map((comment) => (
-                     <>
-                     <div>
-                     <div className="col-span-2"> 
-                      <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
-                  </div>
-                  <ul className="col-span-8">
-                      <li className="text-sm" key={comment?._id}>@username  <span className="text-xs text-gray-400">1 hour ago</span></li>
-                      <li className="pt-2 text-sm" key={comment?._id}>
-                        { comment.comment} </li>
-                      <li className="pt-2 flex items-center gap-2">
-                          <AiOutlineLike size={20} /><span className="text-xs text-gray-400">26</span>
-                          <AiOutlineDislike size={20} />
-                      </li>
-                  </ul>
-                  <ul className="items-center col-span-2">
-                      <li className=""><RxDotsVertical  size={20}/></li>
-                  </ul>
-                     </div>
-                     </>
-                  ))}
-                </div>
+                {comments?.map((comment) => (
+               <>
+            <div className="text-white grid-col-12 key={comment?._id}  mt-20 w-full flex gap-4">
+                    <div className="col-span-2"> 
+                        <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
+                    </div>
+                    <div className="col-span-8 w-full">
+                        <div className="text-sm" >@username  <span className="text-xs text-gray-400">{moment(comment.createdAt).fromNow()}</span></div>
+                        <div className="pt-2 text-sm w-full">
+                            { comment.comment} </div>
+                        <div className="pt-2 flex items-center gap-2">
+                            <AiOutlineLike size={20} /><span className="text-xs text-gray-400">{comment.like_count}</span>
+                            <AiOutlineDislike size={20} />
+                        </div>
+                    </div>
+              <div className="items-center flex col-span-2">
+                  <div className="justify-center"><RxDotsVertical  size={20}/></div>
+              </div>
+                 </div>
+               </>
+                 ))}
             </div>
             {/* video player end */}
 

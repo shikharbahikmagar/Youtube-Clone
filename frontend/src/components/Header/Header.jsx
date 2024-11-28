@@ -1,27 +1,20 @@
-import React , {useEffect} from 'react'
-import axios from 'axios'
-import {Link, NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Hamburger from 'hamburger-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import log from '../../assets/log.png'
-import logo from '../../assets/logo.png'
-import {Input} from '@/components'
 import { CiSearch } from "react-icons/ci";
 import { FaMicrophone } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import { PiCameraPlusFill } from "react-icons/pi";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import useMenuState from '@/contexts/navMenu';
-import { useSelector } from 'react-redux';
 import VideoUploadModal from '../VideoUploadModal/VideoUploadModal';
 import Setting from '../Setting/Setting';
-import { Cookie, SpaceIcon } from 'lucide-react';
 
 
 function Header() {
     const {menuState, openState, closeState} = useMenuState();
     //const userStatus = useSelector((state) => state.auth.status);
-    const user = useSelector((state) => state.auth.userData);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSettingOpen, setIsSettingOpen] = useState(false);
     const [userStatus, setUserStatus] = useState(false);
@@ -34,7 +27,7 @@ function Header() {
     const openSettingModal = () => setIsSettingOpen(true);
     const closSettingeModal = () => setIsSettingOpen(false);
     //console.log(user);
-    var firstChar = null;
+
 
     
 
