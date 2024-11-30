@@ -45,94 +45,96 @@ function Watch() {
     const [comments, setComments] = useState([]);
 
     const {register, reset, handleSubmit, formState: { errors },} = useForm();
-    
-    const onSubmit = async (data) => {
-
-        const newComment =  {
-            video_id: id,
-            comment: data.comment,
-        }
-            try {
-
-                const createComment = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/create-comment`, newComment, {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`,
-                      },       
-                })
-
-                setComments((prevComments) => [newComment, ...prevComments])
-
-               console.log(createComment);
-                    
-
-            } catch (error) {
-                console.log(error);
-                
-            }
-            reset()
-        
-    }
 
     useEffect(() => {
 
-            const fetchData = async () => {
-            try {
-              
-                const RecommendedVideos = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/get-videos`);
-      
-                //console.log(videos);
-                
-                setFeed(RecommendedVideos.data.data.videos)
-              }
-      
-              
-      
-             catch (error) {
-              console.log(error);
-              
-            }
+        const fetchData = async () => {
+        try {
+          
+            const RecommendedVideos = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/get-videos`);
+  
+            //console.log(videos);
+            
+            setFeed(RecommendedVideos.data.data.videos)
           }
-        
-        const getVideo = async() =>{
+  
+          
+  
+         catch (error) {
+          console.log(error);
+          
+        }
+      }
+    
+    const getVideo = async() =>{
 
-            try {
-                    const video = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/watch/${id}`)
-                    setVideoDetails(video.data.data);
-                   // console.log(video);
-                    
-
-            } catch (error) {
-                console.log(error);
+        try {
+                const video = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/watch/${id}`)
+                setVideoDetails(video.data.data);
+               // console.log(video);
                 
-            }
 
+        } catch (error) {
+            console.log(error);
+            
         }
 
-        const getComments = async() => {
-           
-            try {
-                const fetchedComments = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/get-comments/${id}`)
-                setComments(fetchedComments.data.data.comments);
-            } catch (error) {
-                console.log(error);
+    }
+
+    const getComments = async() => {
+       
+        try {
+            const fetchedComments = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/get-comments/${id}`)
+            setComments(fetchedComments.data.data.comments);
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+
+    const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"))
+
+    if(LoggedUser)
+    {
+        setAccessToken(LoggedUser.accessToken)
+    }
+    
+    //setTests(comments);
+    getVideo();
+    fetchData();
+    getComments()
+
+}, [id])
+console.log(comments);
+const onSubmit = async (data) => {
+
+    //const localUser = localStorage.getItem("LoggedInUser");
+    const newComment =  {
+        video_id: id,
+        comment: data.comment,
+    }
+
+        try {
+
+            const createComment = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/create-comment`, newComment, {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                  },       
+            })
+
+            setComments((prevComments) => [createComment.data.data.comment, ...prevComments])
+            //setTests(comments);
+           //console.log(createComment);
                 
-            }
+
+        } catch (error) {
+            console.log(error);
+            
         }
-
-        const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"))
-
-        if(LoggedUser)
-        {
-            setAccessToken(LoggedUser.accessToken)
-        }
-        
-        
-        getVideo();
-        fetchData();
-        getComments()
-
-    }, [id])
-    console.log(comments);
+        reset()
+    
+}  
     // if (!Array.isArray(comments)) {
     //     console.log("not an array");
     //      // or a loading spinner
