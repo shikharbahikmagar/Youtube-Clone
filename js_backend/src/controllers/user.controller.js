@@ -303,7 +303,7 @@ const getCurrentUser = asyncHandler( async(req, res) => {
     console.log(req.user);
 
     return res.status(200)
-    .json(new ApiResponse(200, req.user, "current user fetched successfully"))
+    .json(new ApiResponse(200, "current user fetched successfully", req.user))
 })
 //update user details
 const updateAccountDetails = asyncHandler(async (req, res) => {

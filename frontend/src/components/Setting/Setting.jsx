@@ -2,10 +2,38 @@ import React from 'react'
 import Modal from 'react-modal';
 import { X } from 'lucide-react';
 import { User, Lock, Shield, HelpCircle, LogOut } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 function Setting({ isSettingOpen, onRequestCloseSetting }) {
+  
+
+  const navigate = useNavigate()
+
+
+
+  const handleLogout = async() => {
+
+      try {
+              const logout = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/users/logout`,
+              {},
+              {
+                  withCredentials: true,
+              });
+
+                // refresh
+                navigate(0)
+
+              // console.log(logout);
+              
+      } catch (error) {
+          console.log(error); 
+      }
+  }
+
+
+  
   return (
     <Modal 
     isOpen={isSettingOpen} 
@@ -79,10 +107,10 @@ function Setting({ isSettingOpen, onRequestCloseSetting }) {
         </li>
         
         <li className="pt-2">
-         <Link to="/logout"> <button className="w-full flex items-center space-x-3 py-3 px-4 text-left bg-red-50 hover:bg-red-100 rounded-lg transition-colors duration-200 group">
+       <button onClick={handleLogout} className="w-full flex items-center space-x-3 py-3 px-4 text-left bg-red-50 hover:bg-red-100 rounded-lg transition-colors duration-200 group">
             <LogOut className="w-5 h-5 text-red-500" />
             <span className="text-sm text-red-600">Sign out</span>
-          </button></Link>
+          </button>
         </li>
       </ul>
     </div>

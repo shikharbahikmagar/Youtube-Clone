@@ -10,6 +10,7 @@ import { FaEllipsisVertical } from "react-icons/fa6";
 import useMenuState from '@/contexts/navMenu';
 import VideoUploadModal from '../VideoUploadModal/VideoUploadModal';
 import Setting from '../Setting/Setting';
+import axios from 'axios';
 
 
 function Header() {
@@ -19,14 +20,14 @@ function Header() {
     const [isSettingOpen, setIsSettingOpen] = useState(false);
     const [userStatus, setUserStatus] = useState(false);
 
-    const [loggedInUser, setLoggedInUser] = useState(null);
+    const [loggedInUser, setLoggedInUser] = useState({});
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
     const openSettingModal = () => setIsSettingOpen(true);
     const closSettingeModal = () => setIsSettingOpen(false);
-    //console.log(user);
+   // console.log(loggedInUser);
 
 
     
@@ -44,26 +45,46 @@ function Header() {
     
 useEffect(() => {
 
-    const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"));
+    // const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"));
+   const fetchUser = async() => {
+    
+    try {
+        await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/users/current-user`,{
+            withCredentials: true,
+        })
+        .then((response) => {
+            //  console.log(response.response);
+           if(response.status === 200)
+           {
+            setLoggedInUser(response.data.data);
+            setUserStatus(!userStatus);
+            return response.data.data;
+           }
+        })
+    
+            
+           
+       
+    } catch (error) {
+        if (error.response && error.response.status !== 401) {
+            console.log(error); // Log only other errors
+        } 
+    }
 
-        setLoggedInUser(LoggedUser);
-        if(LoggedUser){
-            setUserStatus(true);
-        }else{
-            setUserStatus(false);
-        }
+}
 
-    //console.log(LoggedUser.avatar);
+   fetchUser();
+   // console.log(LoggedUser);
     //console.log(loggedInUser);
 
-}, [userStatus]);
+}, []);
 
 // if(userStatus){
 //     firstChar = Array.from(loggedInUser.fullname)[0];
 //     //console.log(firstChar);
 // }
-
-    // console.log(loggedInUser);
+// 
+ //console.log(userStatus);
     
 
     

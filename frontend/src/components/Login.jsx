@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, Logo } from './index'
@@ -15,7 +15,8 @@ function Login() {
     baseURL: '${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/', // Base URL
     headers: {
       'Content-Type': 'application/json',
-    }
+    },
+    withCredentials: true,
   });
   let userData = {};
   const login = async(data) => {
@@ -34,6 +35,7 @@ function Login() {
                 username: response.data.data.user.username,
                 accessToken: response.data.data.accessToken,
                 loginStatus: true,
+                expiry: new Date().getTime() +24 * 60 * 60 * 1000
             }
             localStorage.setItem("LoggedInUser", JSON.stringify(LoggedInUser));
             userData = response.data.data.user;
