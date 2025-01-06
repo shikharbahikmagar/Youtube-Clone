@@ -21,7 +21,8 @@ app.listen(port, () => {
 const allowedOrigins = [
   'http://localhost:5173', // Localhost (Development)
   'https://www.bahik.tech',
-  'https://yt-clone-backend-pi.vercel.app/',
+  'https://yt-clone-backend-pi.vercel.app',
+  'https://youtube-clone-ten-coral.vercel.app',
   //  // Localhost (Development)
    // Vercel (Production)
 ];
