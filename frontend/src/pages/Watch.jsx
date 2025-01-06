@@ -6,7 +6,6 @@ import { AiOutlineDislike } from "react-icons/ai";
 import useMenuState from "@/contexts/navMenu";
 import moment from "moment";
 import { BsFilterLeft } from "react-icons/bs";
-import { useSelector } from 'react-redux';
 import {Link} from 'react-router-dom'
 import { RxDotsVertical } from "react-icons/rx";
 import { IoMdHome } from "react-icons/io";
@@ -22,19 +21,24 @@ import { BiSolidTrophy } from "react-icons/bi";
 import { PiShareFatBold } from "react-icons/pi"; 
 import ReactPlayer from "react-player";
 import { LiaDownloadSolid } from "react-icons/lia";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 
 function Watch() {
 
 
    
-    const [accessToken, setAccessToken] = useState(); 
 
-    const userStatus = useSelector((state) => state.auth.status);
-    const user = useSelector((state) => state.auth.userData);
+
+    // const userStatus = useSelector((state) => state.auth.status);
+
+    const [userStatus, setUserStatus] = useState(false);
+
+   const [newTempComment, setNewTempComment] = useState();
 
     //console.log(user);
     const [feed, setFeed] = useState([]);
+
+    const [loggedInUser, setLoggedInUser] = useState({});
 
     const {id} = useParams();
     //console.log(id);
@@ -57,9 +61,6 @@ function Watch() {
             
             setFeed(RecommendedVideos.data.data.videos)
           }
-  
-          
-  
          catch (error) {
           console.log(error);
           
@@ -93,19 +94,40 @@ function Watch() {
         }
     }
 
-    const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"))
-
-    if(LoggedUser)
-    {
-        setAccessToken(LoggedUser.accessToken)
+    const fetchUser = async() => {
+    
+        try {
+            await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/users/current-user`,{
+                withCredentials: true,
+            })
+            .then((response) => {
+                //  console.log(response.response);
+               if(response.status === 200)
+               {
+                setLoggedInUser(response.data.data);
+                setUserStatus(!userStatus);
+                return response.data.data;
+               }
+            })      
+               
+           
+        } catch (error) {
+            if (error.response && error.response.status !== 401) {
+                console.log(error); // Log only other errors
+            } 
+        }
+    
     }
+
+    fetchUser();
     
     //setTests(comments);
     getVideo();
     fetchData();
     getComments()
+    setNewTempComment({});
 
-}, [id])
+}, [id]);
 console.log(comments);
 const onSubmit = async (data) => {
 
@@ -113,17 +135,29 @@ const onSubmit = async (data) => {
     const newComment =  {
         video_id: id,
         comment: data.comment,
+       
     }
+
+    const newTemporaryComment = {
+        comment: data.comment,
+        owner_username: loggedInUser.username,
+        owner_name: loggedInUser.fullName,
+        owner_avatar: loggedInUser.avatar,
+    }
+
 
         try {
 
             const createComment = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/comments/create-comment`, newComment, {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`,
-                  },       
+               withCredentials: true,     
             })
 
-            setComments((prevComments) => [createComment.data.data.comment, ...prevComments])
+            if(createComment)
+            {
+                setComments((prevComments) => [ ...prevComments])
+
+                setNewTempComment(newTemporaryComment);
+            }
             //setTests(comments);
            //console.log(createComment);
                 
@@ -139,6 +173,10 @@ const onSubmit = async (data) => {
     //     console.log("not an array");
     //      // or a loading spinner
     //   }
+    console.log(newTempComment);
+
+    const isEmpty = (obj) => obj && Object.keys(obj).length === 0;
+    
     if(videoDetails)
     {
     return (
@@ -333,7 +371,7 @@ const onSubmit = async (data) => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <ul className="flex items-center gap-4">
                         <li>
-                            <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={user.avatar} alt="" /> : "lo" }</button></Link> 
+                            <Link to={ userStatus? '/profile' : '/login'}><button className={` text-[10px] md:text-lg  ${ userStatus? 'rounded-full text-white' : 'rounded-md md:rounded-full text-blue-400 md:p-2 p-1 pl-2 pr-2 md:pl-4 md:pr-4' } border-1 bg-slate-800`}>{ userStatus? <img className='rounded-full w-12 h-12' src={loggedInUser.avatar} alt="" /> : "lo" }</button></Link> 
                         </li>
                         <li className="w-full">
                         <input type="text" placeholder="Add a comment..." className="text-white border-b-[1px] focus:outline-none  border-slate-300 focus:border-b-[3px] w-full bg-transparent " {...register("comment", {
@@ -349,7 +387,38 @@ const onSubmit = async (data) => {
                 </div>
 
 
+                {/* new comment */}
+              {  !isEmpty(newTempComment) && (
+                  <>
+                  <div className="text-white grid-col-12 key={comment?._id}  mt-20 w-full flex gap-4">
+                          <div className="col-span-2"> 
+      { <img className='rounded-full w-12 h-12' src={newTempComment.owner_avatar} alt="" /> }
+                          </div>
+                          <div className="col-span-8 w-full">
+                              <div className="text-sm" >@{newTempComment.owner_username} <span className="text-xs text-gray-400">a few seconds ago</span></div>
+                              <div className="pt-2 text-sm w-full">
+                                  {newTempComment.comment} </div>
+                              <div className="pt-2 flex items-center gap-2">
+                                  <AiOutlineLike size={20} /><span className="text-xs text-gray-400">0</span>
+                                  <AiOutlineDislike size={20} />
+                              </div>
+                          </div>
+                    <div className="items-center flex col-span-2">
+                        <div className="justify-center"><RxDotsVertical  size={20}/></div>
+                    </div>
+                       </div>
+                     </>
+              
+              )
+
+    }
+
+                    
+                
+              
+
                 {/* comments */}
+            
                 {comments?.map((comment) => (
                <>
             <div className="text-white grid-col-12 key={comment?._id}  mt-20 w-full flex gap-4">
