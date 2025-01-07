@@ -20,28 +20,28 @@ app.listen(port, () => {
 
 const allowedOrigins = [
   'http://localhost:5173', // Localhost (Development)
-  'https://www.bahik.tech',
-  'https://yt-clone-backend-pi.vercel.app',
-  'https://youtube-clone-ten-coral.vercel.app',
-  //  // Localhost (Development)
-   // Vercel (Production)
+  'https://www.bahik.tech', // Production Frontend
+  'https://yt-clone-backend-pi.vercel.app', // Backend
+  'https://youtube-clone-ten-coral.vercel.app', // Alternate Frontend
 ];
 
 // Dynamic origin check
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (e.g., mobile apps or Postman)
+    console.log(`Origin: ${origin}`); // Log origin for debugging
+    // Allow requests with no origin (e.g., Postman or server-to-server requests)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.error(`Blocked by CORS: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,
-  methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true, // Allow credentials (e.g., cookies)
+  methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Headers allowed in requests
 };
 
-app.use(cors(corsOptions));
 
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
