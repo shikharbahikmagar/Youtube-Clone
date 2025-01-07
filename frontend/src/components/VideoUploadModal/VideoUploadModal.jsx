@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import { X } from 'lucide-react';
+import { X, Upload } from 'lucide-react';
 
 const VideoUploadModal = ({ isOpen, onRequestClose }) => {
   const [title, setTitle] = useState('');
@@ -83,9 +83,9 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
 //console.log(accessToken);
 
   return (
-    <Modal 
-      isOpen={isOpen} 
-      onRequestClose={onRequestClose} 
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
       contentLabel="Video Upload"
       style={{
         overlay: {
@@ -94,7 +94,7 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          backgroundColor: 'rgba(70, 65, 65, 0.8)',
           zIndex: 1000,
         },
         content: {
@@ -102,114 +102,142 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          background: '#e1e3e3',
+          background: '#0f0f0f',
           padding: '0',
-          borderRadius: '0.75rem',
-          width: '80%',
-          height: '90%',
-          maxWidth: '90%',
+          borderRadius: '0.5rem',
+          width: '90%',
+          maxWidth: '960px',
+          height: '95vh',
           border: 'none',
         },
       }}
     >
-      <div className="relative bg-[#e1e3e3] rounded-xl shadow-lg">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-800">Upload Video</h2>
+      <div className="flex flex-col h-full bg-black">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
+          <h2 className="text-xl font-medium text-white">Upload video</h2>
           <button
             onClick={onRequestClose}
-            className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-gray-800 rounded-full transition-colors"
           >
-            <X className="w-5 h-5 text-gray-500" />
+            <X className="w-5 h-5 text-gray-300" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Title:</label>
-            <input
-              type="text"
-              name="title"
-              value={title}
-              onChange={handleInputChange}
-              placeholder="Enter video title"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
+        {/* Form */}
+        <div className="flex-1 overflow-y-auto">
+          <form onSubmit={handleSubmit} className="p-6">
+            {/* Upload area */}
+            <div className="mb-4 border-2 border-dashed border-gray-700 rounded-lg p-12 text-center bg-black">
+              {!uploading ? (
+                <div className="space-y-4">
+                  <Upload className="w-12 h-8 mx-auto text-gray-400" />
+                  <div>
+                    <p className="text-lg font-medium text-white">Drag and drop video files to upload</p>
+                    <p className="text-sm text-gray-400">Your videos will be private until you publish them</p>
+                  </div>
+                  <input
+                    type="file"
+                    accept="video/*"
+                    name="videoFile"
+                    onChange={handleVideoChange}
+                    required
+                    className="hidden"
+                    id="video-upload"
+                  />
+                  <label
+                    htmlFor="video-upload"
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-black bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer"
+                  >
+                    SELECT FILE
+                  </label>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <p className="text-sm font-medium text-white">Uploading: {uploadProgress}%</p>
+                  <div className="w-full bg-gray-800 rounded-full h-1">
+                    <div
+                      className="bg-blue-600 h-1 rounded-full transition-all duration-300"
+                      style={{ width: `${uploadProgress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Description:</label>
-            <textarea
-              name="description"
-              value={description}
-              onChange={handleInputChange}
-              placeholder="Enter video description"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[100px]"
-            />
-          </div>
+            {/* Details section */}
+            <div className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Title (required)</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={title}
+                  onChange={handleInputChange}
+                  placeholder="Add a title that describes your video"
+                  required
+                  className="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md shadow-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Video File:</label>
-            <input
-              type="file"
-              accept="video/*"
-              name='videoFile'
-              onChange={handleVideoChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-            />
-          </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Description</label>
+                <textarea
+                  name="description"
+                  value={description}
+                  onChange={handleInputChange}
+                  placeholder="Tell viewers about your video"
+                  required
+                  className="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md shadow-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 min-h-[120px]"
+                />
+              </div>
 
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">Thumbnail Image:</label>
-            <input
-              type="file"
-              name='thumbnail'
-              accept="image/*"
-              onChange={handleThumbnailChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-            />
-          </div>
-
-          {uploading && (
-            <div className="space-y-2">
-              <p className="text-sm text-gray-600">Uploading: {uploadProgress}%</p>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${uploadProgress}%` }}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-1">Thumbnail</label>
+                <input
+                  type="file"
+                  name="thumbnail"
+                  accept="image/*"
+                  onChange={handleThumbnailChange}
+                  required
+                  className="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-md shadow-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-gray-800 file:text-white hover:file:bg-gray-700"
                 />
               </div>
             </div>
-          )}
 
-          {uploadSuccess && (
-            <p className="text-sm text-green-600 font-medium">Upload successful!</p>
-          )}
-          
-          {uploadError && (
-            <p className="text-sm text-red-600 font-medium">{uploadError}</p>
-          )}
+            {uploadSuccess && (
+              <div className="mt-4 p-4 bg-green-900 rounded-md">
+                <p className="text-sm text-green-300 font-medium">Upload successful!</p>
+              </div>
+            )}
+            
+            {uploadError && (
+              <div className="mt-4 p-4 bg-red-900 rounded-md">
+                <p className="text-sm text-red-300 font-medium">{uploadError}</p>
+              </div>
+            )}
+          </form>
+        </div>
 
+        {/* Footer */}
+        <div className="px-6 py-4 border-t border-gray-800 bg-black">
           <div className="flex justify-end space-x-4">
             <button
               type="button"
               onClick={onRequestClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-4 py-2 text-sm font-medium text-white bg-transparent border border-gray-700 rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={uploading}
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-4 py-2 text-sm font-medium text-black bg-white border border-transparent rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {uploading ? 'Uploading...' : 'Upload'}
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </Modal>
   );
