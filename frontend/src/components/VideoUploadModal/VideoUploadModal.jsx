@@ -29,7 +29,7 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Video uploaded successfully');
+    // alert('Video uploaded successfully');
     if (!videoFile || !thumbnail) {
       setUploadError('Please select both a video and a thumbnail.');
       return;
