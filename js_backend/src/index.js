@@ -23,7 +23,7 @@ const allowedOrigins = [
   'https://www.bahik.tech',
   'https://yt-clone-backend-pi.vercel.app',
   'https://youtube-clone-ten-coral.vercel.app',
-  '/'
+  '/',
   //  // Localhost (Development)
    // Vercel (Production)
 ];
