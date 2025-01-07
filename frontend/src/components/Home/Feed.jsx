@@ -31,7 +31,7 @@ function Feed()
     }
 
       fetchData();
-    })
+    }, [])
 
    // console.log(feed);
     

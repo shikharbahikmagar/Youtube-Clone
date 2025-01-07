@@ -12,7 +12,6 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [uploadError, setUploadError] = useState('');
-  const [accessToken, setAccessToken] = useState('');
 
   const handleVideoChange = (e) => {
     setVideoFile(e.target.files[0]);
@@ -30,7 +29,7 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    alert('Video uploaded successfully');
     if (!videoFile || !thumbnail) {
       setUploadError('Please select both a video and a thumbnail.');
       return;
@@ -49,10 +48,7 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/api/v1/videos/upload-video`, formData, {
 
-        
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },        
+      withCredentials: true,        
 
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded / progressEvent.total) * 100);
@@ -72,15 +68,10 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
 
   useEffect( () => {
 
-    const LoggedUser = JSON.parse(localStorage.getItem("LoggedInUser"));
-
-    if(LoggedUser){
-        setAccessToken(LoggedUser.accessToken);
-       
-    }
+    
 
 }, []);
-//console.log(accessToken);
+//console.log(title, description);
 
   return (
     <Modal
@@ -216,11 +207,9 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
                 <p className="text-sm text-red-300 font-medium">{uploadError}</p>
               </div>
             )}
-          </form>
-        </div>
-
-        {/* Footer */}
-        <div className="px-6 py-4 border-t border-gray-800 bg-black">
+            
+            {/* Submit button */}
+            <div className="px-6 py-4 border-t border-gray-800 bg-black">
           <div className="flex justify-end space-x-4">
             <button
               type="button"
@@ -238,6 +227,10 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
             </button>
           </div>
         </div>
+          </form>
+        </div>
+
+        {/* Footer */}
       </div>
     </Modal>
   );
