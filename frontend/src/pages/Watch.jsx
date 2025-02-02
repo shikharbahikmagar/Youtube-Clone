@@ -266,7 +266,7 @@ const onSubmit = async (data) => {
                         <li>
                             <a href="#" className="flex items-center p-3 hover:rounded-lg hover:bg-gray-300 hover:text-black">
                             <BiSolidTrophy className="text-[10xp] md:text-sm"/>
-                                <span className="ml-3 md:text-md text-sm">Sport</span>
+                                <span className="ml-3 md:text-md text-sm">Sports</span>
                             </a>
                         </li>
                     </ul>
