@@ -7,6 +7,7 @@ export const Feed = React.lazy(() => import('./Home/Feed'));
 export const Watch = React.lazy(() => import('../pages/Watch'));
 export const Login = React.lazy(() => import('../pages/Login.jsx'));
 export const Logout = React.lazy(() => import('../pages/Logout.jsx'));
+export const Signup = React.lazy(() => import('../pages/Signup.jsx'));
 
 
 const LoadingFallback = () => (

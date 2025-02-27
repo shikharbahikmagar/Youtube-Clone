@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Suggestion from "../suggestions/Suggestion";
-import Sidebar from "../../components/Sidebar/Sidebar"
+import Sidebar from "../../components/Sidebar/Sidebar";
+import moment from "moment";
 function Feed()
 {
   const baseURL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL || 'https://yt-clone-backend-pi.vercel.app';
@@ -17,7 +18,7 @@ function Feed()
         
           const videos = await axios.get(`${baseURL}/api/v1/videos/get-videos`);
 
-          //console.log(videos);
+          // console.log(videos);
           
           setFeed(videos.data.data.videos)
         }
@@ -57,7 +58,7 @@ function Feed()
           <p className="text-[10px] md:text-sm text-gray-300 ml-[50px]">{video.ownerDetails[0].fullName}</p>
           <div className="flex">
             <p className="text-[10px] md:text-sm text-gray-300 ml-[50px]">{video.views}</p>
-            <p className="text-[10px] md:text-sm text-gray-300 ml-4">&bull;  1 months ago</p>
+            <p className="text-[10px] md:text-sm text-gray-300 ml-4">&bull;  {moment(video.createdAt).fromNow()}</p>
           </div>
       </div>
       </div>

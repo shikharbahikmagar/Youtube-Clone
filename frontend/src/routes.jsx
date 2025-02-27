@@ -2,7 +2,7 @@ import { createBrowserRouter} from 'react-router-dom';
 import App from './App.jsx';
 import SimpleLayout from './SimpleLayout';
 import LazyComponent from './components/LazyComponent.jsx';
-import { Feed, Watch, Login, Logout} from './components/LazyComponent.jsx'
+import { Feed, Watch, Login, Logout, Signup} from './components/LazyComponent.jsx'
 
 
 const router = createBrowserRouter([
@@ -27,6 +27,16 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <LazyComponent component={Login} />
+      }
+    ]
+  },
+  {
+    path: "signup",
+    element: <SimpleLayout />,
+    children: [
+      {
+        path: "",
+        element: <LazyComponent component={Signup} />
       }
     ]
   },

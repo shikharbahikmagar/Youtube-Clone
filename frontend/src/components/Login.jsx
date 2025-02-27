@@ -37,7 +37,7 @@ function Login() {
                 loginStatus: true,
                 expiry: new Date().getTime() +24 * 60 * 60 * 1000
             }
-            localStorage.setItem("LoggedInUser", JSON.stringify(LoggedInUser));
+             localStorage.setItem("LoggedInUser", JSON.stringify(LoggedInUser));
             userData = response.data.data.user;
             dispatch(authLogin({userData}));
             navigate('/')

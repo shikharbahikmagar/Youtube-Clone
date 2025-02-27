@@ -5,7 +5,9 @@ import Login from "./Login";
 
 import Input from './Input';
 
-import Button from './Button'
+import Button from './Button';
+
+import Signup from "./Signup";
 
 
 export {
@@ -13,4 +15,5 @@ export {
     Login,
     Input,
     Button,
+    Signup
 }
