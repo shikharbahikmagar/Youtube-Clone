@@ -454,7 +454,7 @@ const onSubmit = async (data) => {
                             <li className="text-xs">{video.title}</li>
                             <li className="text-gray-400 mt-2">{video.ownerDetails[0].fullName}</li>
                            <ul className="flex gap-2">
-                                <li className="text-gray-400 mt-2">{videoDetails.video[0].views} views</li>
+                                <li className="text-gray-400 mt-2">{video.views} views</li>
                                 <li className="text-gray-400 mt-2">&bull; {moment(video.createdAt).fromNow()}</li>
                            </ul>
                         </ul>
