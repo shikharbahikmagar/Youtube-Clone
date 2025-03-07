@@ -73,11 +73,20 @@ const watchVideo = asyncHandler(async(req, res) => {
         
     const videoId = req.params.id
 
-    const video = await Video.aggregate([
+    const video = await Video.findByIdAndUpdate(
+        
+    videoId,         
+    
+    {  $inc: { views: 1 } },
+        { new: true }
+
+    )
+
+    const view_updated_video = await Video.aggregate([
 
         {
             $match: {
-                _id: new mongoose.Types.ObjectId(videoId) 
+                _id: new mongoose.Types.ObjectId(video._id) 
             }
         },
         {
@@ -106,7 +115,7 @@ const watchVideo = asyncHandler(async(req, res) => {
         new ApiError(404, "Video not found")
     }
 
-    return res.status(200).json(new ApiResponse(200, "video fetched successfully", {video: video}))
+    return res.status(200).json(new ApiResponse(200, "video fetched successfully", {video: view_updated_video}))
 
 
 })

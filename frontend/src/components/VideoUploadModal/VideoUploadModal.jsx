@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { X, Upload } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const VideoUploadModal = ({ isOpen, onRequestClose }) => {
   const [title, setTitle] = useState('');
@@ -58,7 +59,22 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
       
       setUploadSuccess(true);
       setUploading(false);
-      console.log('Video uploaded successfully:', response.data);
+      // console.log('Video uploaded successfully:', response.data);
+      if(response){
+
+        toast.success("Video Uploaded Successfully!", {
+          position: "top-right",
+          autoClose: 3000, // 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+      });
+
+      }
+
+
     } catch (error) {
       setUploadError('Error uploading video');
       setUploading(false);
@@ -114,7 +130,7 @@ const VideoUploadModal = ({ isOpen, onRequestClose }) => {
             <X className="w-5 h-5 text-gray-300" />
           </button>
         </div>
-
+        <ToastContainer />
         {/* Form */}
         <div className="flex-1 overflow-y-auto">
           <form onSubmit={handleSubmit} className="p-6">

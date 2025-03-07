@@ -42,7 +42,7 @@ function Login() {
              log(LoggedInUser);
             const userData = response.data.data.user;
             dispatch(authLogin({userData}));
-            toast.success("User logged in successfully! 🚀", {
+            toast.success("User logged in successfully!", {
                 position: "top-right",
                 autoClose: 3000, // 3 seconds
                 hideProgressBar: false,
