@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom"
 
 import { MenuStateProvider } from "./contexts/navMenu"
 import { useState } from "react"
+import { ToastContainer } from "react-toastify"
 
 
 
@@ -21,6 +22,7 @@ function App() {
   return (
     <MenuStateProvider value={{menuState, openState, closeState} }>
       <Header />
+      <ToastContainer />
       <Outlet />
       <Footer />
     </MenuStateProvider>

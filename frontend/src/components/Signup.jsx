@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
 
 function Signup() {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
@@ -40,6 +41,11 @@ function Signup() {
                 }
             );
 
+            if(response)
+            {
+                // alert("User registered successfully");
+                toast.success("User registered successfully");
+            }
 
             console.log(response);
             } catch (error) {
@@ -56,6 +62,8 @@ function Signup() {
 
 
   return (
+    <>
+    <ToastContainer />
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-black to-gray-900 p-4">
       <div className="w-full max-w-2xl bg-gray-800 rounded-xl shadow-2xl p-6 sm:p-10 transform transition duration-500 hover:scale-[1.01]">
         <div className="text-center mb-8">
@@ -209,6 +217,8 @@ function Signup() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }
 

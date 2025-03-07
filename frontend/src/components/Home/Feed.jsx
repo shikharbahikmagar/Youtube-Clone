@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Suggestion from "../suggestions/Suggestion";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import moment from "moment";
+import { ToastContainer } from "react-toastify";
 function Feed()
 {
   const baseURL = import.meta.env.VITE_REACT_APP_BACKEND_BASEURL || 'https://yt-clone-backend-pi.vercel.app';
@@ -40,6 +41,7 @@ function Feed()
 
     return(
         <>
+        <ToastContainer />
         
         <Suggestion />
         <Sidebar />
