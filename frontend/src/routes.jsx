@@ -43,7 +43,8 @@ const router = createBrowserRouter([
   {
     path: "logout",
     element: <LazyComponent component={Logout} />
-  }
+  },
+  
 ]);
 
 export default router
