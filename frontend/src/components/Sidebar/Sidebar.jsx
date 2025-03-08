@@ -107,7 +107,7 @@ function Sidebar (){
                 </li>
             </ul>
 
-            <div className="mt-4 p-4 text-sm text-slate-500">
+            <div className="mt-4 p-4 text-xs text-slate-500">
                 <p className="p-2"> About Press Copyright Contact us Creators Advertise Developers</p>
                 <p className="p-2">
                 Terms Privacy Policy & Safety How YouTube works Test new features</p>

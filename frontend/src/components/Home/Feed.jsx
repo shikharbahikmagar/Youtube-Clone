@@ -59,8 +59,8 @@ function Feed()
           </div>
           <p className="text-[10px] md:text-sm text-gray-300 ml-[50px]">{video.ownerDetails[0].fullName}</p>
           <div className="flex">
-            <p className="text-[10px] md:text-sm text-gray-300 ml-[50px]">{video.views}</p>
-            <p className="text-[10px] md:text-sm text-gray-300 ml-4">&bull;  {moment(video.createdAt).fromNow()}</p>
+            <p className="text-[10px] md:text-xs text-gray-400 ml-[50px]">{video.views} views</p>
+            <p className="text-[10px] md:text-xs text-gray-400 ml-4">&bull;  {moment(video.createdAt).fromNow()}</p>
           </div>
       </div>
       </div>
