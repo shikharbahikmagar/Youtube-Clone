@@ -194,7 +194,7 @@ function Watch() {
           withCredentials: true,
         }
       );
-      //console.log(response.status);
+      console.log(response);
 
       if(response)
       {
